@@ -1,0 +1,28 @@
+<div id='container'>
+<form name='form1' id='form1' method='post' action='<{$action}>'>
+  <input type='hidden' name='memberID' value='<{$memberID}>'>
+  <input type='hidden' name='serial' value='<{$serial}>'>
+  <div class='info'>
+    <h2 class='info'><{$tableTitle}></h2>
+  </div>
+  <ul>
+    <li>
+      <label class='qfirst'>新人姓名</label><span><{$memberName}></span>
+    </li>
+    <li>
+      <label class='qfirst'>訪談者</label><input type='text' name='carer' value='<{$carer}>' size='10'>
+    </li>
+    <li>
+      <label class='qfirst' for='date'>訪談時間</label>
+      <input type='text' name='date' id='date' class='datepicker' size="10" value='<{$date}>' tabindex='1'>
+    </li>
+    <li>
+      <label class='block'>訪談內容</label>
+      <textarea name='recentSituation' ROWS=5 COLS=70 tabindex='2'><{$recentSituation}></textarea>
+    </li>
+    <li class='button'>
+      <input type='submit' value='儲存' tabindex='3'>
+    </li>
+  </ul>
+</form>
+</div>
