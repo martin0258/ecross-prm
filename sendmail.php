@@ -1,11 +1,17 @@
 <?php
+/** 
+ * Description:
+ * 寄發新人名單通知信給小組長。用排程的方式呼叫此檔案。
+ * @author Martin Ku
+ * @package own-library
+ */
 set_time_limit(6000);
 $letAnonymousPass = true;
 include '../../mainfile.php';
 include 'include/encrypt.php';
 include 'function/funcs.php';
 
-//log
+# log
 $should_fp = fopen(getSysVar('logFilePath'), 'a+');
 $mail_fp = fopen(getSysVar('logFilePath'), 'a+');
 
@@ -38,7 +44,8 @@ foreach( $changeList as $groupID=>$memberIDList){
   $groupLeaderMail = mysql_result($result, 0, 1);
   $IDlist = "";
   foreach( $memberIDList as $memberID){
-    $IDlist .= ($memberID.'j');
+    //用逗號將新人ID分開
+    $IDlist .= ($memberID.',');
   }
   $IDlist = substr($IDlist, 0, strlen($IDlist)-1);
   $link = XOOPS_URL . '/modules/torch_newmember/index.php?l=' . authcode($IDlist, 'ENCODE');
@@ -81,5 +88,4 @@ foreach( $changeList as $groupID=>$memberIDList){
 
 fclose($mail_fp);
 fclose($should_fp);
-
 ?>

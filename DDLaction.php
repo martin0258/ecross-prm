@@ -1,4 +1,13 @@
 <?php
+/** 
+ * Description:
+ * This page would return JSON object to AJAX request.
+ * Now we have two usages:
+ *    1. 縣市->鄉鎮市區
+ *    2. 牧區->小組
+ * @author Martin Ku
+ * @package ajax
+ */
 include '../../mainfile.php';
 
 $data = array();

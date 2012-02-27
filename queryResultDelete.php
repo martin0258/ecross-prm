@@ -1,18 +1,33 @@
 <?php
+/* 
+ * Description:
+ * [查詢刪除]的結果頁面
+ * @author Martin Ku
+ * @package page
+ */
 include '../../mainfile.php';
+
+//檢查權限及是否登入
 if($xoopsUser){
   if(!$_SESSION['mod5']){
     redirect_header(XOOPS_URL, 3, _NOPERM);
   }
-}else redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN);
+}else{ redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN); }
 
 //Use smarty template
 $xoopsOption['template_main'] = "tableResult.html";
 $xoopsOption['xoops_module_header'] = 
-  "<link rel='stylesheet' type='text/css' href='css/torchStyle.css'>
-  <script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
-  <script type='text/javascript' src='js/checkBox.js'></script>
-  <script type='text/javascript' src='js/torch.js'></script>";
+  "<link type='text/css' rel='stylesheet' href='css/redmond/jquery-ui-1.8.18.custom.css' />
+   <link type='text/css' rel='stylesheet' href='css/torchStyle.css' />
+   <script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
+   <script type='text/javascript' src='js/jquery-ui-1.8.18.custom.min.js'></script>
+   <script type='text/javascript' src='js/checkBox.js'></script>
+   <script type='text/javascript' src='js/torch.js'></script>
+   <script type='text/javascript'>
+     $(document).ready(function(){
+       $('.Button').button();
+     });
+   </script>";
 include XOOPS_ROOT_PATH.'/header.php';
 require_once("include/pager.php");
 

@@ -1,6 +1,14 @@
 <?php
+/** 
+ * Description:
+ * 儲存編輯完成的新人資料(包含上傳圖片)
+ * @author Martin Ku
+ * @package backend
+ */
 include '../../mainfile.php';
 require_once 'include/imageResize.php';  
+
+# 檢查權限及是否登入
 if($xoopsUser){
   if(!$_SESSION['mod3']){
     redirect_header(XOOPS_URL, 3, _NOPERM);

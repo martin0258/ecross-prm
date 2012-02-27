@@ -1,11 +1,19 @@
 <?php
+/** 
+ * Description:
+ * 新增訪談紀錄的後端處理頁。INSERT一筆新的訪談紀錄。
+ * @author Martin Ku
+ * @package backend
+ */
 include '../../mainfile.php';
 if($xoopsUser){
   if((!$_SESSION['mod2'] && !$_SESSION['mod3']) || !isset($_POST['memberID'])){
     redirect_header(XOOPS_URL, 3, _NOPERM);
   }
 }
-else redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN);
+else{
+  redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN);
+}
 
 $memberID = $_POST['memberID'];
 $RecordTime = $_POST['date'];

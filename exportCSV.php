@@ -1,5 +1,15 @@
 <?php
+/** 
+ * Description:
+ * 根據勾選的新人輸出地址條
+ * @author Martin Ku
+ * @package backend
+ */
 include '../../mainfile.php';
+
+# 檢查是否有勾選新人，沒有的話重新導向至首頁
+if(count($_POST['memberId'])<=0){ redirect_header(XOOPS_URL, 3, _NOPERM); }
+
 $memberId = $_POST['memberId'];     //get the checkbox array
 $list = array();
 for($i=0;$i<count($memberId);$i++){
@@ -35,4 +45,3 @@ while($row = $xoopsDB->fetchRow($result)){
 fclose($fp);
 header("Location:$filename");
 ?>
-

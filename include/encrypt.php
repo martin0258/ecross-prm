@@ -1,14 +1,14 @@
 <?php
 /*
- *	程式目的 	: Encrypt or decrypt 
- *	使用環境	: PHP + MySQL
- *	作者		: Martin Ku@torch
- *	最後更新	: 2011.10.08(By Martin)
- *	使用說明	:
- *	$encrpt_string = authcode('string that need to encrypt', 'ENCODE');
- *	$decrpt_string = authcode('string that need to decrypt', 'DECODE');
+ * Description:
+ * 用來加解密新人通知有哪些人，加密後的字串為網址上的QUERY_STRING
+ * @author Martin Ku
+ * @package own-library
+ * @return string 加/解密後的字串; 解密失敗的回傳NULL
+ * Usage:
+ *   $encrpt_string = authcode('string that need to encrypt', 'ENCODE');
+ *   $decrpt_string = authcode('string that need to decrypt', 'DECODE');
  */
-
 function authcode($string, $operation){
   $key = "金鑰字串，多長都可以，火把，天父，耶穌，聖靈，看見神的榮耀!!!";
 
@@ -47,7 +47,7 @@ function authcode($string, $operation){
       return substr($result, 8);
     } else {
       //decode error
-      return '';
+      return NULL;
     }
   } else {
     return str_replace('=', '', base64_encode($result));

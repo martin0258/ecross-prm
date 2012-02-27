@@ -1,3 +1,13 @@
+<{* 
+  Description:
+  This template is used by 
+    -contactList.php[訪談列表]
+    -queryResult.php[查詢結果]
+    -queryResultDelete.php[查詢刪除]
+    -queryResultAddress.php[地址輸出]
+  @author Martin Ku
+*}>
+
 <div class='info'>
   <table class='infoTable'>
     <tr>
@@ -9,6 +19,7 @@
 <div>
 <{if isset($formAction)}>
 <form name='form1' method='post' onsubmit='<{$formOnsubmit}>' action='<{$formAction}>'>
+<div class='scrollBar'>
 <{/if}>
 <table class='qTable'>
   <thead>
@@ -30,6 +41,7 @@
   <{$tableFoot}>
 </table>
 <{if isset($formAction)}>
+</div>
 </form>
 <{/if}>
 </div>

@@ -1,11 +1,19 @@
 <?php
+/** 
+ * Description:
+ * [建檔]的後端處理頁。ISNERT一筆新人資料。
+ * @author Martin Ku
+ * @package backend
+ */
 include '../../mainfile.php';
 include './function/funcs.php';
+
+# 檢查權限及是否登入
 if($xoopsUser){
   if(!$_SESSION['mod1']){
     redirect_header(XOOPS_URL, 3, _NOPERM);
   }
-}else redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN);
+}else{ redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN); }
 //名單日期
 date_default_timezone_set('Asia/Taipei');
 $FirstVisitDate = $_POST['date']=='' ? date("Y-m-d") : $_POST['date'];

@@ -1,33 +1,19 @@
 <?php
+/** 
+ * Description:
+ * [查看新人]的主頁面。編輯完新人資料後會導向此頁。
+ * @author Martin Ku
+ * @package page
+ */
 include '../../mainfile.php';
+require_once('function/funcs.php');
 if($xoopsUser){
   if(!$_SESSION['mod2'] && !$_SESSION['mod3']){
     redirect_header(XOOPS_URL, 3, _NOPERM);
   }
 }
-else redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN);
+else { redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN); }
 $buttonType = ($_SESSION['mod3']==true) ? 'submit' : 'hidden';
-
-function getCode($code_kind_name){
-  global $xoopsDB;
-  $sql = "SELECT CODE_ID, CODE_NAME FROM ".$xoopsDB->prefix('torch_code')." WHERE CODE_KIND_NAME='$code_kind_name'";
-  $result = $xoopsDB->query($sql);
-  $list = array();
-  while( $row = $xoopsDB->fetchrow($result) ){
-    $list[$row[0]] = $row[1];
-  }
-  return $list;
-}
-function getChecked($memArr, $codeArr){
-  foreach( $codeArr as $key=>$value){
-    if(strstr($memArr, $key) != false){
-      $codeArr[$key] = 'Y';
-    }else{
-      $codeArr[$key] = 'N';
-    }
-  }
-  return $codeArr;
-}
 
 # Use module template
 $xoopsOption['template_main'] = "detailForm.html";
@@ -82,14 +68,10 @@ $xoopsTpl->assign('ageArr', $ageArr);
 $xoopsTpl->assign('countryArr', $countryArr);
 
 # Get the codes of checkbox arrays
-$intermediumArr = getCode('得知火把');
-$likeReasonArr = getCode('喜歡原因、待改進原因');
-$improveArr = getCode('喜歡原因、待改進原因');
-$serviceArr = getCode('提供服務');
-$intermediumArr = getChecked($row[28], $intermediumArr);
-$likeReasonArr = getChecked($row[30], $likeReasonArr);
-$improveArr = getChecked($row[32], $improveArr);
-$serviceArr = getChecked($row[34], $serviceArr);
+$intermediumArr = getChecked($row[28], '得知火把');
+$likeReasonArr = getChecked($row[30], '喜歡原因、待改進原因');
+$improveArr = getChecked($row[32],  '喜歡原因、待改進原因');
+$serviceArr = getChecked($row[34], '提供服務');
 $xoopsTpl->assign('intermediumArr', $intermediumArr);
 $xoopsTpl->assign('likeReasonArr', $likeReasonArr);
 $xoopsTpl->assign('improveArr', $improveArr);

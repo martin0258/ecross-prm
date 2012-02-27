@@ -1,6 +1,18 @@
 <?php
-# 如果有因為foreign key而無法刪除的table，在此刪除
-function xoops_module_uninstall_torch_newmember( $xoopsMod ) {
+/** 
+ * Description: 
+ * This file contains the functions executed after the module has been uninstalled.
+ * @author Martin Ku
+ * @package xoops
+ */
+
+/**
+ * Description: 
+ * 刪除因為foreign key而無法刪除的table
+ * @param string $xoopsMod name of the module
+ * @return bool true if all success otherwise false
+ */
+function xoops_module_uninstall_torch_newmember($xoopsMod) {
   global $xoopsDB;
   $strDeleteSQL = "DROP TABLE IF EXISTS ";
   $tables = array(
@@ -14,5 +26,4 @@ function xoops_module_uninstall_torch_newmember( $xoopsMod ) {
   }
   return $sumResult;
 }
-
 ?>

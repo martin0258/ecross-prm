@@ -1,11 +1,19 @@
 <?php
+/* 
+ * Description:
+ * 從查詢結果點[訪談]進入此頁面。顯示某一新人的訪談記錄列表。
+ * @author Martin Ku
+ * @package page
+ */
 include '../../mainfile.php';
+
+# 檢查權限及是否登入
 if($xoopsUser){
   if(!$_SESSION['mod2'] && !$_SESSION['mod3']){
     redirect_header(XOOPS_URL, 3, _NOPERM);
   }
 }
-else redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN);
+else{ redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN); }
 if(!isset($_POST['memberID']) && !isset($_SESSION['contactMemberID'])){
   redirect_header(XOOPS_URL, 3, _NOPERM);
 }
@@ -15,8 +23,17 @@ $_SESSION['contactMemberID'] = $memberID;
 //Use smarty template
 $xoopsOption['template_main'] = 'tableResult.html';
 $xoopsOption['xoops_module_header'] = 
-  "<link rel='stylesheet' type='text/css' href='css/torchStyle.css'>
-  <script type='text/javascript' src='js/torch.js'></script>";
+  "<link type='text/css' rel='stylesheet' href='css/redmond/jquery-ui-1.8.18.custom.css' />
+   <link type='text/css' rel='stylesheet' href='css/torchStyle.css' />
+   <script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
+   <script type='text/javascript' src='js/jquery-ui-1.8.18.custom.min.js'></script>
+   <script type='text/javascript'>
+     $(document).ready(function(){
+       $('.Button').button();
+       //we must set this to let scroll bar to appear
+       $('#xo-canvas-columns').css('table-layout', 'fixed');
+     });
+   </script>";
 include XOOPS_ROOT_PATH.'/header.php';
 require_once("include/pager.php");
 
@@ -89,8 +106,10 @@ else{
   for ($i = 0; $i < mysql_num_rows($result); $i++) {
     $row = $xoopsDB->fetchRow($result);
     $tableBody[$i] = array();
-
-    $row[0] = substr($row[0],0,10);
+    
+    //時間顯示長度調整，訪談紀錄只顯示前40個字
+    $row[0] = substr($row[0],0,10);                 
+    $row[2] = mb_strlen($row[2], 'utf-8')>40 ? mb_substr($row[2],0,40, 'utf-8').'......' : $row[2];
     for($j = 0 ; $j < 3 ; $j++){
       array_push($tableBody[$i], $row[$j]);
     }

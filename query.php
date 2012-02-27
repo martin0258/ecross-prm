@@ -1,14 +1,19 @@
 <?php
 /* 
- * 程式用途：作為[查詢]、[查詢修改]、[查詢刪除]、[地址輸出]的輸入搜尋條件頁面
- * 歷史：
- *    2012/1/25 Martin Ku, change jqueryui css file to 'jquery-ui-1.8.16.custom.torch.css' for jGrowl.
+ * Description:
+ * 作為[查詢]、[查詢修改]、[查詢刪除]、[地址輸出]的輸入搜尋條件頁面
+ * @author Martin Ku
+ * @package page
  */
 include '../../mainfile.php';
 
-if(!$xoopsUser){
-  redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN);
+# 檢查權限及是否登入
+if($xoopsUser){
+  if(!$_SESSION['mod2'] && !$_SESSION['mod3']){
+    redirect_header(XOOPS_URL, 3, _NOPERM);
+  }
 }
+else{ redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN); }
 
 //Decide which type of query and check if the user have its authority
 $queryType = (isset($_GET['queryType'])) ? $_GET['queryType'] : 'query';
@@ -35,11 +40,11 @@ if($queryType == 'delete'){
 //use module template
 $xoopsOption['template_main'] = 'queryForm.html';
 $xoopsOption['xoops_module_header'] = 
-  "<link type='text/css' rel='stylesheet' href='css/redmond/jquery-ui-1.8.16.custom.torch.css' />	  
+  "<link type='text/css' rel='stylesheet' href='css/redmond/jquery-ui-1.8.18.custom.css' />	  
   <link type='text/css' rel='stylesheet' href='css/torchStyle.css' />
   <script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
   <script type='text/javascript' src='js/jquery.ba-hashchange.js'></script>
-  <script type='text/javascript' src='js/jquery-ui-1.8.17.custom.min.js'></script>
+  <script type='text/javascript' src='js/jquery-ui-1.8.18.custom.min.js'></script>
   <script type='text/javascript' src='js/jquery.ui.datepicker-zh-TW.js'></script>
   <script type='text/javascript' src='js/selectboxes.js'></script>
   <script type='text/javascript' src='js/cascadingDropdown.js'></script>

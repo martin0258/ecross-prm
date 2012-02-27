@@ -1,43 +1,29 @@
 <?php
+/** 
+ * Description:
+ * 儲存一筆編輯完成的訪談紀錄
+ * @author Martin Ku
+ * @package page
+ */
 include '../../mainfile.php';
+require_once 'function/funcs.php';  
+
+//檢查權限及是否登入
 if($xoopsUser){
   if(!$_SESSION['mod3']){
     redirect_header(XOOPS_URL, 3, _NOPERM);
   }
 }
-else{
-  redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN);
-}
-
-function getCode($code_kind_name){
-  global $xoopsDB;
-  $sql = "SELECT CODE_ID, CODE_NAME FROM ".$xoopsDB->prefix('torch_code')." WHERE CODE_KIND_NAME='$code_kind_name'";
-  $result = $xoopsDB->query($sql);
-  $list = array();
-  while( $row = $xoopsDB->fetchrow($result) ){
-    $list[$row[0]] = $row[1];
-  }
-  return $list;
-}
-function getChecked($memArr, $codeArr){
-  foreach( $codeArr as $key=>$value){
-    if(strstr($memArr, $key) != false){
-      $codeArr[$key] = 'Y';
-    }else{
-      $codeArr[$key] = 'N';
-    }
-  }
-  return $codeArr;
-}
+else{ redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN); }
 
 # Use module template
 $xoopsOption['template_main'] = "detailForm.html";
 $xoopsOption['xoops_module_header'] = 
   "<link rel='stylesheet' type='text/css' href='css/validationEngine.jquery.css'>
-  <link rel='stylesheet' type='text/css' href='css/redmond/jquery-ui-1.8.16.custom.css'>	  
+  <link rel='stylesheet' type='text/css' href='css/redmond/jquery-ui-1.8.18.custom.css'>	  
   <link rel='stylesheet' type='text/css' href='css/torchStyle.css'>
   <script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
-  <script type='text/javascript' src='js/jquery-ui-1.8.17.custom.min.js'></script>
+  <script type='text/javascript' src='js/jquery-ui-1.8.18.custom.min.js'></script>
   <script type='text/javascript' src='js/jquery.ui.datepicker-zh-TW.js'></script>
   <script type='text/javascript' src='js/validation/jquery.validationEngine-zh_TW.js'></script>
   <script type='text/javascript' src='js/validation/jquery.validationEngine.js'></script>
@@ -81,14 +67,10 @@ $xoopsTpl->assign('ageArr', $ageArr);
 $xoopsTpl->assign('countryArr', $countryArr);
 
 # Get the codes of checkbox arrays
-$intermediumArr = getCode('得知火把');
-$likeReasonArr = getCode('喜歡原因、待改進原因');
-$improveArr = getCode('喜歡原因、待改進原因');
-$serviceArr = getCode('提供服務');
-$intermediumArr = getChecked($row[28], $intermediumArr);
-$likeReasonArr = getChecked($row[30], $likeReasonArr);
-$improveArr = getChecked($row[32], $improveArr);
-$serviceArr = getChecked($row[34], $serviceArr);
+$intermediumArr = getChecked($row[28], '得知火把');
+$likeReasonArr = getChecked($row[30], '喜歡原因、待改進原因');
+$improveArr = getChecked($row[32],  '喜歡原因、待改進原因');
+$serviceArr = getChecked($row[34], '提供服務');
 $xoopsTpl->assign('intermediumArr', $intermediumArr);
 $xoopsTpl->assign('likeReasonArr', $likeReasonArr);
 $xoopsTpl->assign('improveArr', $improveArr);

@@ -1,5 +1,18 @@
 <?php
-function xoops_module_install_torch_newmember( $xoopsMod ) {
+/** 
+ * Description: 
+ * This file contains the functions executed after the module has been installed
+ * @author Martin Ku
+ * @package xoops
+ */
+
+/**
+ * Description: 
+ * 將小組代碼0轉成NULL，設定Log file path
+ * @param string $xoopsMod name of the module
+ * @return bool true if all success otherwise false
+ */
+function xoops_module_install_torch_newmember($xoopsMod) {
   global $xoopsDB;
   # 將小組代碼0轉成NULL，才能符合foreign constraint
   $strSetNoGroup = "UPDATE ".$xoopsDB->prefix('torch_MemberInformation').
@@ -21,5 +34,4 @@ function xoops_module_install_torch_newmember( $xoopsMod ) {
   }*/
   return $result && $result2;
 }
-
 ?>

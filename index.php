@@ -1,15 +1,20 @@
 <?php
+/** 
+ * Description:
+ * 新人名單模組首頁
+ * @author Martin Ku
+ * @package page
+ */
 include 'include/encrypt.php';
 $letAnonymousPass = false;
 if(isset($_GET['l'])){
   $list_encrypt = str_replace(" ", "+", $_GET['l']);
   $list_decrypt = authcode($list_encrypt, 'DECODE');
-  if($list_decrypt != ''){
+  if($list_decrypt!=NULL){
+    //解密成功
     $list = '';
     $IDlist = explode('j', $list_decrypt);
-    foreach( $IDlist as $memberID){
-      $list .= "'$memberID',";
-    }
+    foreach( $IDlist as $memberID ){ $list .= "'$memberID',"; }
     $letAnonymousPass = true;
   }
 }

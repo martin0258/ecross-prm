@@ -1,8 +1,13 @@
 <?php
+/** 
+ * Description:
+ * 批次匯入的後端處理頁面
+ * @author 文輝哥
+ * @package backend
+ */
 include '../../mainfile.php';
 
-// 如果確實上傳檔案的話，這個檔案的大小（$_FILES['CSVfile']['size']）將會大於 0 才對
-
+# 如果確實上傳檔案的話，這個檔案的大小（$_FILES['CSVfile']['size']）將會大於 0 才對
 if ($_FILES['CSVfile']['size'] > 0) {
   $temp_SQL = "";
 

@@ -37,6 +37,7 @@ select { font-size: .8em; font-family: verdana, arial, helvetica, sans-serif;}
   border-width: 0 1px 1px 1px; 
   border-style: solid;
   white-space: nowrap;
+  width: 100%;
 }
 .qTable tbody td {
   /*border-bottom: 1px solid #339;*/
@@ -180,7 +181,6 @@ input[type=submit].importantButton:hover, input[type=button].importantButton:hov
 
 
 /* ----- REQUIRED ----- */
-
 form span.req{
   display:inline;
   float:none;
@@ -200,6 +200,7 @@ form span.req{
   -o-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
   box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
 }
+.scrollBar {position:relative; overflow:auto;}
 
 /* ===== Info ===== */
 .info {

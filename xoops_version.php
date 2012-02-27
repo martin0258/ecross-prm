@@ -1,4 +1,10 @@
 ﻿<?php
+/**
+ * Description:
+ * XOOPS模組基本內容設定
+ * @author Martin Ku
+ * @package xoops
+ */
 $modversion['name'] = '新人名單模組';
 $modversion['version'] = '4.1';
 $modversion['description'] = '火把行道會新人名單模組';
@@ -49,26 +55,26 @@ $modversion['templates'][5]['description'] = 'The template using for query Resul
 $modversion['hasMain'] = 1;
 
 if(isset($_SESSION['mod1'])){
-    if($_SESSION['mod1']==true){
-        $modversion['sub'][0]['name'] = '建檔';
-        $modversion['sub'][0]['url'] = 'addMember.php';
-    }
-    if($_SESSION['mod2']==true || $_SESSION['mod3']==true){
-        if($_SESSION['mod3']==true)$modversion['sub'][1]['name'] = '查詢修改';
-        else $modversion['sub'][1]['name'] = '查詢';
-        $modversion['sub'][1]['url'] = 'query.php';
-    }
-    if($_SESSION['mod4']==true){
-        $modversion['sub'][2]['name'] = '批次匯入';
-        $modversion['sub'][2]['url'] = 'importCSV.php';
-    }
-    if($_SESSION['mod5']==true){
-        $modversion['sub'][3]['name'] = '查詢刪除';
-        $modversion['sub'][3]['url'] = 'query.php?queryType=delete';
-    }
-    if($_SESSION['mod6']==true){
-        $modversion['sub'][4]['name'] = '地址輸出';
-        $modversion['sub'][4]['url'] = 'query.php?queryType=address';
-    }
+  if($_SESSION['mod1']==true){
+    $modversion['sub'][0]['name'] = '建檔';
+    $modversion['sub'][0]['url'] = 'addMember.php';
+  }
+  if($_SESSION['mod2']==true || $_SESSION['mod3']==true){
+    if($_SESSION['mod3']==true){ $modversion['sub'][1]['name'] = '查詢修改'; }
+    else { $modversion['sub'][1]['name'] = '查詢'; }
+    $modversion['sub'][1]['url'] = 'query.php';
+  }
+  if($_SESSION['mod4']==true){
+    $modversion['sub'][2]['name'] = '批次匯入';
+    $modversion['sub'][2]['url'] = 'importCSV.php';
+  }
+  if($_SESSION['mod5']==true){
+    $modversion['sub'][3]['name'] = '查詢刪除';
+    $modversion['sub'][3]['url'] = 'query.php?queryType=delete';
+  }
+  if($_SESSION['mod6']==true){
+    $modversion['sub'][4]['name'] = '地址輸出';
+    $modversion['sub'][4]['url'] = 'query.php?queryType=address';
+  }
 }
 ?>

@@ -1,7 +1,14 @@
 <?php
-/* There is an uncaught reference error:
- * activateMenu("nav") is not defined */
+/** 
+ * Description:
+ * This file is the main page of the admin section.
+ * @author Martin Ku
+ * @package page
+ */
 
+/**
+ * There is an uncaught reference error:
+ * activateMenu("nav") is not defined */
 include '../../../include/cp_header.php';
 include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 include_once XOOPS_ROOT_PATH.'/class/xoopsform/grouppermform.php';

@@ -1,4 +1,10 @@
 <?php
+/** 
+ * Description:
+ * This file adds the testing email and group to torch_GroupLists.
+ * @author Martin Ku
+ * @package process
+ */
 include '../../../include/cp_header.php';
 if($xoopsUser){
   $mid = $xoopsModule->mid();

@@ -1,13 +1,18 @@
 <?php
+/** 
+ * Description:
+ * 批次匯入的主頁
+ * @author Martin Ku
+ * @package page
+ */
 include '../../mainfile.php';
 include XOOPS_ROOT_PATH.'/header.php';
 
+# 檢查權限及是否登入
 if($xoopsUser){
-  if(!$_SESSION['mod4']){
-    redirect_header(XOOPS_URL, 3, _NOPERM);
-  }
+  if(!$_SESSION['mod4']){ redirect_header(XOOPS_URL, 3, _NOPERM); }
 }
-else redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN);
+else{ redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN); }
 $xoops_module_header = 
   "<link rel='stylesheet' type='text/css' href='css/validationEngine.jquery.css'>
   <link rel='stylesheet' type='text/css' href='css/torchStyle.css'>
