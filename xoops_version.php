@@ -2,8 +2,9 @@
 /**
  * Description:
  * XOOPS模組基本內容設定
- * @author Martin Ku
- * @package xoops
+ * @author          Martin Ku
+ * @package         xoops
+ * @version         2012/02/28 Add mod7:mailLink.php.
  */
 $modversion['name'] = '新人名單模組';
 $modversion['version'] = '4.1';
@@ -75,6 +76,10 @@ if(isset($_SESSION['mod1'])){
   if($_SESSION['mod6']==true){
     $modversion['sub'][4]['name'] = '地址輸出';
     $modversion['sub'][4]['url'] = 'query.php?queryType=address';
+  }
+  if($_SESSION['mod7']==true){
+    $modversion['sub'][5]['name'] = '小組新人';
+    $modversion['sub'][5]['url'] = 'mailLink.php';
   }
 }
 ?>

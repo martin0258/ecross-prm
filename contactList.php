@@ -35,7 +35,7 @@ $xoopsOption['xoops_module_header'] =
      });
    </script>";
 include XOOPS_ROOT_PATH.'/header.php';
-require_once("include/pager.php");
+include_once("class/pager.php");
 
 $sql = 
   "SELECT CASE WHEN tm.ChineseName != '' THEN tm.ChineseName ELSE tm.EnglishName END AS NAME, 

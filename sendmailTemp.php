@@ -2,14 +2,15 @@
 /** 
  * Description:
  * This file is the temporary of sendmail.php。在大家習慣登入的查看方式前，仍於信中附表格。
- * @author Martin Ku
- * @package backend
+ * @author          Martin Ku
+ * @package         backend
+ * @version         2012/02/28 Last update
  */
 set_time_limit(6000);
 $letAnonymousPass = true;
 include '../../mainfile.php';
-include 'include/encrypt.php';
-include 'function/funcs.php';
+require_once 'function/encrypt.php';
+require_once 'function/funcs.php';
 
 # log
 $should_fp = fopen(getSysVar('logFilePath'), 'a+');
@@ -48,7 +49,7 @@ foreach( $changeList as $groupID=>$memberIDList){
     $IDlist .= ($memberID.',');
   }
   $IDlist = substr($IDlist, 0, strlen($IDlist)-1);
-  $link = XOOPS_URL . '/modules/torch_newmember/index.php?l=' . authcode($IDlist, 'ENCODE');
+  $link = XOOPS_URL . '/modules/torch_newmember/mailLink.php?l=' . authcode($IDlist, 'ENCODE');
 
   $xoopsMailer =& xoops_getMailer();
   $xoopsMailer->useMail();
