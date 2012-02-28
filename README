@@ -1,0 +1,13 @@
+Ecross使用「叉00S」架設網站。
+
+===Login notification===
+  -include\checkLogin.php:  used loginMailer to send email
+  -class\loginMailer.php :  class to send email after login
+  -language\tchinese_utf8\mail_template\loginFail.tpl   :   mail template
+  -language\tchinese_utf8\mail_template\loginSuccess.tpl:   mail template
+  -language\english\mail_template\loginFail.tpl         :   mail template
+  -language\english\mail_template\loginSuccess.tpl      :   mail template
+
+===Group notification===
+  -include\checkLogin.php:  restore SESSION and redirect.
+  -include\common.php    :  set letAnonymousPass.
