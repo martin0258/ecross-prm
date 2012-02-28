@@ -14,6 +14,7 @@ $_SESSION['mod3'] = false;
 $_SESSION['mod4'] = false;
 $_SESSION['mod5'] = false;
 $_SESSION['mod6'] = false;
+$_SESSION['mod7'] = true;
 $gperm_itemid = array
   (
     '建檔'=>'1',
