@@ -3,7 +3,7 @@
  * Description:       Search torch for changes. See README for more info.
  * @author            Martin Ku
  * @package           xoops
- * @version           2012/02/28 Add the comment block.
+ * @version           2012/02/29 Use 2.5.4 version
  */
 
 /**
@@ -20,7 +20,7 @@
  * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @package         core
  * @since           2.0.0
- * @version         $Id: checklogin.php 4941 2010-07-22 17:13:36Z beckmi $
+ * @version         $Id: checklogin.php 8066 2011-11-06 05:09:33Z beckmi $
  * @todo            Will be refactored
  */
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
@@ -104,7 +104,7 @@ if (false != $user) {
     }
 
     if (!empty($_POST['xoops_redirect']) && !strpos($_POST['xoops_redirect'], 'register')) {
-        $_POST['xoops_redirect'] = trim($_POST['xoops_redirect']);
+        $xoops_redirect = trim(rawurldecode($_POST['xoops_redirect']));
         $parsed = parse_url(XOOPS_URL);
         $url = isset($parsed['scheme']) ? $parsed['scheme'].'://' : 'http://';
         if (isset( $parsed['host'])) {
@@ -116,11 +116,11 @@ if (false != $user) {
             $url .= $_SERVER['HTTP_HOST'];
         }
         if (@$parsed['path']) {
-            if (strncmp($parsed['path'], $_POST['xoops_redirect'], strlen( $parsed['path']))) {
+            if (strncmp($parsed['path'], $xoops_redirect, strlen( $parsed['path']))) {
                 $url .= $parsed['path'];
             }
         }
-        $url .= $_POST['xoops_redirect'];
+        $url .= $xoops_redirect;
     } else {
         $url = XOOPS_URL . '/index.php';
     }
@@ -129,6 +129,7 @@ if (false != $user) {
     // Perform some maintenance of notification records
     $notification_handler =& xoops_gethandler('notification');
     $notification_handler->doLoginMaintenance($user->getVar('uid'));
+
 
     /*Start Code of torch*/
     if(isset($_SESSION['newMemberList'])){

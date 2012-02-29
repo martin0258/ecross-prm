@@ -3,7 +3,7 @@
  * Description:       Search torch for changes. See README for more info.
  * @author            Martin Ku
  * @package           xoops
- * @version           2012/02/28 Add the comment block.
+ * @version           2012/02/29 Use 2.5.4 version
  */
 
 /**
@@ -19,7 +19,7 @@
  * @copyright The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @package kernel
- * @version $Id: common.php 4941 2010-07-22 17:13:36Z beckmi $
+ * @version $Id: common.php 8066 2011-11-06 05:09:33Z beckmi $
  */
 defined('XOOPS_MAINFILE_INCLUDED') or die('Restricted access');
 
