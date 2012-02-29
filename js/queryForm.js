@@ -21,8 +21,5 @@ $(document).ready(function(){
     showOn: 'both',
     buttonImageOnly: false
   }); 
-  var today = new Date();
-  //convert month to 2 digits
-  var month = (today.getMonth()+1).toString().length==1 ? '0'+(today.getMonth()+1) : today.getMonth()+1;
-  $('#endDate').val(today.getFullYear() + '-' + (month) + '-' + today.getDate());
+  $('#endDate').datepicker('setDate', new Date());
 });

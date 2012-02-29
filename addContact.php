@@ -32,10 +32,7 @@ $xoopsOption['xoops_module_header'] =
         showOn: 'both',
         buttonImageOnly: false
       }); 
-      var today = new Date();
-      //convert month to 2 digits
-      var month = (today.getMonth()+1).toString().length==1 ? '0'+(today.getMonth()+1) : today.getMonth()+1;
-      $('#date').val(today.getFullYear() + '-' + (month) + '-' + today.getDate());
+      $('#date').datepicker('setDate', new Date());
     });
   </script>";
 include XOOPS_ROOT_PATH.'/header.php';
