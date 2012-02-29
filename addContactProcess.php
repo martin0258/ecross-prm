@@ -20,7 +20,7 @@ $RecordTime = $_POST['date'];
 $Carer = $_POST['carer'];
 $recentSituation = $_POST['recentSituation'];
 
-$sql = "Insert Into ".$xoopsDB->prefix("torch_pastoralrecords")." (RecordTime,MemberInformation_MemberID,Carer,RecentSituation) 
+$sql = "Insert Into ".$xoopsDB->prefix("torch_pastoral_records")." (RecordTime,MemberInformation_MemberID,Carer,RecentSituation) 
   VALUES('$RecordTime','$memberID','$Carer','$recentSituation')";
 $result = $xoopsDB->query($sql);
 

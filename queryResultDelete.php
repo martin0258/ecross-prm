@@ -42,7 +42,7 @@ $flag = 0;
 if($ifContact != "")
 {
   $contactSQL = " SELECT DISTINCT MemberInformation_MemberID FROM "
-    .$xoopsDB->prefix('torch_pastoralrecords');
+    .$xoopsDB->prefix('torch_pastoral_records');
   $sqlstring = ($ifContact == 'no') ? " MemberID NOT IN($contactSQL) " : " MemberID IN($contactSQL) ";
   $flag=1;
 }
@@ -90,7 +90,7 @@ if($CellGroup!='')
   $flag = 1;
 }else if($CellGroupCtg != '' && $CellGroup==''){
   //搜尋一整個牧區
-  $strGroupsSQL = "SELECT GroupID FROM ".$xoopsDB->prefix('torch_GroupLists')." WHERE GroupCategory='$CellGroupCtg'";
+  $strGroupsSQL = "SELECT GroupID FROM ".$xoopsDB->prefix('torch_group_lists')." WHERE GroupCategory='$CellGroupCtg'";
   $result = $xoopsDB->query($strGroupsSQL);
   $groupIDList = '';
   while( $row = $xoopsDB->fetchrow($result) ){
@@ -104,7 +104,7 @@ if($CellGroup!='')
 $sql = 
   "SELECT FirstVisitDate, CASE WHEN ChineseName != '' THEN ChineseName ELSE EnglishName END AS NAME,
   GroupLists_GroupID, CellPhoneNumber, Email, CONCAT(MailingAddress_Country, MailingAddress_Township, 
-  MailingAddress_Detail) AS Address, MemberID FROM ".$xoopsDB->prefix("torch_MemberInformation");
+  MailingAddress_Detail) AS Address, MemberID FROM ".$xoopsDB->prefix("torch_member_information");
 if($flag == 1)
 {
   $sql .= " WHERE $sqlstring";
@@ -166,7 +166,7 @@ if(mysql_num_rows($result)==0){
     $tableBody[$i] = array();
 
     //取得小組資訊
-    $sql_group = "SELECT GroupLeaderName, GroupName FROM ".$xoopsDB->prefix("torch_grouplists")
+    $sql_group = "SELECT GroupLeaderName, GroupName FROM ".$xoopsDB->prefix("torch_group_lists")
       ." where GroupID = '$row[2]'";
     $return = $xoopsDB->query($sql_group);
     $row[2] = (mysql_num_rows($return)==0) ? 

@@ -26,7 +26,7 @@ $result = $xoopsDB->query($sql);
 while($row = $xoopsDB->fetchRow($result)){
   if(in_array($row[7], $list)){
     //取得小組資訊
-    $sql_group = "SELECT GroupLeaderName, GroupName FROM ".$xoopsDB->prefix("torch_grouplists")
+    $sql_group = "SELECT GroupLeaderName, GroupName FROM ".$xoopsDB->prefix("torch_group_lists")
       ." where GroupID = '$row[1]'";
     $return = $xoopsDB->query($sql_group);
     $row[1] = (mysql_num_rows($return)==0) ? '暫無小組' : mysql_result($return, 0)."-".mysql_result($return, 0, 1);

@@ -17,15 +17,15 @@ $modversion['dirname'] = 'torch_newmember';
 
 # Database things
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
-$modversion['tables']['0'] = 'torch_SpecialtyLists';
-$modversion['tables']['1'] = 'torch_ServiceLists';
-$modversion['tables']['2'] = 'torch_GroupLists';
-$modversion['tables']['3'] = 'torch_MemberInformation';
-$modversion['tables']['4'] = 'torch_MemberService';
-$modversion['tables']['5'] = 'torch_MemberSpecialty';
-$modversion['tables']['6'] = 'torch_PastoralRecords';
-$modversion['tables']['7'] = 'torch_Code';
-$modversion['tables']['8'] = 'torch_SystemVariable';
+$modversion['tables']['0'] = 'torch_specialty_lists';
+$modversion['tables']['1'] = 'torch_service_lists';
+$modversion['tables']['2'] = 'torch_group_lists';
+$modversion['tables']['3'] = 'torch_member_information';
+$modversion['tables']['4'] = 'torch_member_service';
+$modversion['tables']['5'] = 'torch_member_specialty';
+$modversion['tables']['6'] = 'torch_pastoral_records';
+$modversion['tables']['7'] = 'torch_code';
+$modversion['tables']['8'] = 'torch_system_variable';
 
 # Insert data into table
 $modversion['onInstall'] = 'function/install_funcs.php';

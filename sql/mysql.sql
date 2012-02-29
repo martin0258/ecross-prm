@@ -1,24 +1,25 @@
 -- 新人名單4.1資料庫DDL
 -- 建立日期: 2011/9/24
+-- 修改日期: 2012/03/01 Change table name to lower case
 -- 作者: Torch
 -- 
 -- 資料庫: `torch_`
 -- 
 -- --------------------------------------------------------
 
-CREATE TABLE torch_SpecialtyLists (
+CREATE TABLE torch_specialty_lists (
   SpecialtyID INTEGER(10) UNSIGNED  NOT NULL AUTO_INCREMENT COMMENT '專長編號',
   SpecialtyItem VARCHAR(20)  NOT NULL  COMMENT '專長項目',
 PRIMARY KEY(SpecialtyID)
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-CREATE TABLE torch_ServiceLists (
+CREATE TABLE torch_service_lists (
   ServiceID INTEGER(10) UNSIGNED  NOT NULL AUTO_INCREMENT COMMENT '事工編號',
   ServiceItem VARCHAR(20)  NOT NULL COMMENT '事工項目',
 PRIMARY KEY(ServiceID)
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-CREATE TABLE torch_GroupLists (
+CREATE TABLE torch_group_lists (
   GroupID INTEGER(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '小組編號',
   GroupLeaderName VARCHAR(20)  NULL  COMMENT '小組長姓名',
   GroupName VARCHAR(20)  NULL COMMENT '小組名稱',
@@ -29,7 +30,7 @@ CREATE TABLE torch_GroupLists (
 PRIMARY KEY(GroupID)
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
-CREATE TABLE torch_MemberInformation (
+CREATE TABLE torch_member_information (
   MemberID INTEGER(10) UNSIGNED  NOT NULL AUTO_INCREMENT COMMENT '會友編號',
   IDNumber VARCHAR(20)  NULL  COMMENT '身分證字號',
   GroupLists_GroupID INTEGER(10) UNSIGNED NULL  COMMENT '小組編號',
@@ -86,45 +87,45 @@ CREATE TABLE torch_MemberInformation (
   INDEX MemberInformation_FKIndex1(GroupLists_GroupID),
   INDEX MemberInformation_FKIndex2(GroupID_TEMP),
   FOREIGN KEY(GroupLists_GroupID) 
-  REFERENCES torch_GroupLists(GroupID)
+  REFERENCES torch_group_lists(GroupID)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION,
   FOREIGN KEY(GroupID_TEMP)
-  REFERENCES torch_GroupLists(GroupID)
+  REFERENCES torch_group_lists(GroupID)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION
-)ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4594;
+)ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE torch_MemberService (
+CREATE TABLE torch_member_service (
   MemberInformation_MemberID INTEGER(10) UNSIGNED  NOT NULL COMMENT '會友編號',
   ServiceLists_ServiceID INTEGER(10) UNSIGNED  NOT NULL COMMENT '事工編號',
 INDEX MemberService_FKIndex1(MemberInformation_MemberID),
   FOREIGN KEY(MemberInformation_MemberID)
-    REFERENCES torch_MemberInformation(MemberID)
+    REFERENCES torch_member_information(MemberID)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION,
   FOREIGN KEY(ServiceLists_ServiceID)
-    REFERENCES torch_ServiceLists(ServiceID)
+    REFERENCES torch_service_lists(ServiceID)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-CREATE TABLE torch_MemberSpecialty (
+CREATE TABLE torch_member_specialty (
   MemberInformation_MemberID INTEGER(10) UNSIGNED  NOT NULL COMMENT '會友編號',
   SpecialtyLists_SpecialtyID INTEGER(10) UNSIGNED  NOT NULL  COMMENT '專長編號',
 INDEX MemberSpecialty_FKIndex2(MemberInformation_MemberID),
   FOREIGN KEY(SpecialtyLists_SpecialtyID)
-    REFERENCES torch_SpecialtyLists(SpecialtyID)
+    REFERENCES torch_specialty_lists(SpecialtyID)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION,
   FOREIGN KEY(MemberInformation_MemberID)
-    REFERENCES torch_MemberInformation(MemberID)
+    REFERENCES torch_member_information(MemberID)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-CREATE TABLE torch_PastoralRecords (
+CREATE TABLE torch_pastoral_records (
   RecordSerial int  NOT NULL   AUTO_INCREMENT COMMENT '訪談序號',
   RecordTime DATETIME  NOT NULL COMMENT '日期+時間',
   MemberInformation_MemberID INTEGER(10) UNSIGNED  NOT NULL COMMENT '會友編號',
@@ -133,19 +134,19 @@ CREATE TABLE torch_PastoralRecords (
 PRIMARY KEY(RecordSerial)  ,
 INDEX PastoralRecords_FKIndex1(MemberInformation_MemberID),
   FOREIGN KEY(MemberInformation_MemberID)
-    REFERENCES torch_MemberInformation(MemberID)
+    REFERENCES torch_member_information(MemberID)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION
-)ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=334 ;
+)ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE torch_SystemVariable (
+CREATE TABLE torch_system_variable (
   VariableName VARCHAR(50)  NOT NULL COMMENT '變數名稱',
   Value VARCHAR(200)  NULL COMMENT '變數值',
 PRIMARY KEY(VariableName)
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-CREATE TABLE torch_Code (
+CREATE TABLE torch_code (
   CODE_KIND VARCHAR(20)  NOT NULL COMMENT '編碼種類' ,
   CODE_ID VARCHAR(10)  NOT NULL COMMENT '編碼ID' ,
   CODE_KIND_NAME VARCHAR(50)  NULL COMMENT '編碼種類名稱' ,
@@ -154,7 +155,7 @@ CREATE TABLE torch_Code (
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- Insert the codes will be used in program
-INSERT INTO `torch_Code` (`CODE_KIND`, `CODE_ID`, `CODE_KIND_NAME`, `CODE_NAME`) VALUES
+INSERT INTO `torch_code` (`CODE_KIND`, `CODE_ID`, `CODE_KIND_NAME`, `CODE_NAME`) VALUES
 ('Intermedium', 'I1', '得知火把', '朋友'),
 ('Intermedium', 'I2', '得知火把', '家人'),
 ('Intermedium', 'I3', '得知火把', '傳播媒介'),
@@ -575,7 +576,8 @@ INSERT INTO `torch_Code` (`CODE_KIND`, `CODE_ID`, `CODE_KIND_NAME`, `CODE_NAME`)
 ('ZIP_LC', '211', '連江縣', '莒   光'),
 ('ZIP_LC', '212', '連江縣', '東   引');
 
-INSERT INTO `torch_grouplists` (`GroupID`, `GroupLeaderName`, `GroupName`, `GroupCategory`, `GroupLeaderMail`, `ViceLeaderMail`, `ACTIVE_FLAG`) VALUES
+-- Insert the latest group information
+INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `GroupCategory`, `GroupLeaderMail`, `ViceLeaderMail`, `ACTIVE_FLAG`) VALUES
 (1, '吳永成', '迦勒', '永成區', 'danielwu@via.com.tw', 'andypassat@gmail.com', 1),
 (2, '蘇文奕', '真男人', '銘潔區', 'eanwen@yahoo.com.tw', 'kuawai@msn.com', 1),
 (3, '王銘潔', '火戰車', '銘潔區', 'wmj07@yahoo.com.tw', 'goomos67@yahoo.com.tw', 1),

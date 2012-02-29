@@ -23,7 +23,7 @@ if ($_GET['zipCountry']!="") {
 }else if ($_GET['category']!="") {
   // 當使用者選擇小組分類後，填入對應的小組
   $category = $_GET['category'];
-  $sql = "SELECT GroupID, GroupLeaderName, GroupName FROM ".$xoopsDB->prefix("torch_grouplists").
+  $sql = "SELECT GroupID, GroupLeaderName, GroupName FROM ".$xoopsDB->prefix("torch_group_lists").
     " WHERE GroupCategory ='$category' AND ActivE_Flag=true";
   $result = $xoopsDB->query($sql);
   while ($row = mysql_fetch_assoc($result)) {

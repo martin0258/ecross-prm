@@ -66,7 +66,7 @@ if ($_FILES['CSVfile']['size'] > 0) {
         $Stability = '其他';
       //echo "Stability= ".$Stability;
       $Note = iconv("BIG5","UTF-8",$ROW[28]);
-      $sql_1 = "Insert Into ".$xoopsDB->prefix("torch_MemberInformation")."(MemberID, IDNumber, GroupLists_GroupID, 
+      $sql_1 = "Insert Into ".$xoopsDB->prefix("torch_member_information")."(MemberID, IDNumber, GroupLists_GroupID, 
         ChineseName, EnglishName, Introducer, IntroducerPhoneNumber, Sex,";
         /*
         Birthday, Marriage, CellPhoneNumber, HomePhoneNumber, 
@@ -114,15 +114,6 @@ if ($_FILES['CSVfile']['size'] > 0) {
         '$AuthorityStatus', '$Job', '$Stability', '$Note', '0')";		
       $sql = $sql_1.$sql_2;
       $result = $xoopsDB->query($sql);  
-      //echo "sql=".$sql;
-      // 從新抓MemberID 更新到torch_MemberContact
-      //$sql = "Select Max(MemberID) From ".$xoopsDB->prefix("torch_memberinformation");
-      //$result = $xoopsDB->query($sql);
-      //$row = $xoopsDB->fetchrow($result);
-      //echo "Max(count)--->".$row[0];
-      $sql = "Insert Into ".$xoopsDB->prefix("torch_membercontact")."(MemberInformation_MemberID, ContactNumber) Values ('$MemberID', '0')";
-      $result = $xoopsDB->query($sql);
-      //echo "sql=".$sql;
     }
   }
   fclose($fp);  

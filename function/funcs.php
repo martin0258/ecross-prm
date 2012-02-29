@@ -8,14 +8,14 @@
 
 /**
  * Description: 
- * 從torch_SystemVariable table傳回系統變數
+ * 從torch_system_variable table傳回系統變數
  * @param string $varName name of the variable
  * @return mixed value of the variable(return NULL if cannot find the var)
  */
 function getSysVar($varName) {
   global $xoopsDB;
   # 將小組代碼0轉成NULL，才能符合foreign constraint
-  $strSQL = "SELECT Value FROM ".$xoopsDB->prefix('torch_SystemVariable').
+  $strSQL = "SELECT Value FROM ".$xoopsDB->prefix('torch_system_variable').
     " WHERE VariableName='$varName'";
   $result = $xoopsDB->query($strSQL);
   return $result==false? NULL : mysql_result($result, 0);

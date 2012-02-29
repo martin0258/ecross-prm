@@ -40,8 +40,8 @@ include_once("class/pager.php");
 $sql = 
   "SELECT CASE WHEN tm.ChineseName != '' THEN tm.ChineseName ELSE tm.EnglishName END AS NAME, 
    tp.RecordTime FROM "
-  .$xoopsDB->prefix("torch_memberinformation").
-  " tm LEFT JOIN ".$xoopsDB->prefix('torch_pastoralrecords').
+  .$xoopsDB->prefix("torch_member_information").
+  " tm LEFT JOIN ".$xoopsDB->prefix('torch_pastoral_records').
   " tp ON tp.MemberInformation_MemberID = tm.MemberID WHERE MemberID = '$memberID'";
 $result = $xoopsDB->query($sql);
 $row = $xoopsDB->fetchRow($result);
@@ -83,7 +83,7 @@ else{
   
   $sql = 
     "SELECT RecordTime, Carer, RecentSituation, RecordSerial FROM "
-    .$xoopsDB->prefix("torch_pastoralrecords").
+    .$xoopsDB->prefix("torch_pastoral_records").
     " Where MemberInformation_MemberID ='$memberID' ORDER BY RecordTime DESC";
 
   $links_per_page = 10;

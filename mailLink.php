@@ -25,7 +25,7 @@ if(isset($_GET['l'])){
 }
 
 # 檢查模組各項功能權限
-include_once 'include\checkPermission.php';
+include_once 'include/checkPermission.php';
 # 跑完一遍XOOPS的檢查後，SESSION會被清空
 # 故需於此後設定，才會登入後轉向此頁(詳見checkLogin.php)。
 if($letAnonymousPass){ //解密成功才會有SESSION
@@ -36,7 +36,7 @@ if($letAnonymousPass){ //解密成功才會有SESSION
 if($xoopsUser){
   if(isset($_SESSION['newMemberList'])){
     redirect_header('queryResult.php?l=1', 3, '以下是本次小組新人<br>要記得聯絡喔:)'); 
-  }else{ include_once 'include\mailLinkInfo.php'; }
+  }else{ include_once 'include/mailLinkInfo.php'; }
 }
 else { redirect_header(XOOPS_URL, 3, _MD_NOT_LOGIN); }
 ?>

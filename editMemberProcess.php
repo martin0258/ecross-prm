@@ -123,7 +123,7 @@ $intercession = $_POST['intercession'];
 //其他疑問/建議
 $memNote = $_POST['note'];
 
-$sql = "SELECT PictureSavingPath FROM ".$xoopsDB->prefix("torch_MemberInformation")." where MemberID = '$memberID'";
+$sql = "SELECT PictureSavingPath FROM ".$xoopsDB->prefix("torch_member_information")." where MemberID = '$memberID'";
 $result = $xoopsDB->query($sql);
 $pre_Path = mysql_result($result, 0);
 $message = '資料已更新';
@@ -158,7 +158,7 @@ if($memType==''){
 //開始更新
 $uname = $xoopsUser->uname();
 $sql = 
-  "UPDATE ".$xoopsDB->prefix("torch_memberinformation").
+  "UPDATE ".$xoopsDB->prefix("torch_member_information").
   " SET FirstVisitDate = '$FirstVisitDate', 
   ChineseName = '$memChineseName',
   EnglishName = '$memEnglishName',

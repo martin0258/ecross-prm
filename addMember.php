@@ -32,7 +32,7 @@ $xoopsOption['xoops_module_header'] =
 include XOOPS_ROOT_PATH.'/header.php';
 
 # Get the Group Category
-$sqlGroup = "SELECT DISTINCT(GroupCategory) FROM ".$xoopsDB->prefix('torch_GroupLists');
+$sqlGroup = "SELECT DISTINCT(GroupCategory) FROM ".$xoopsDB->prefix('torch_group_lists');
 $result = $xoopsDB->query($sqlGroup);
 $groupArr = array();
 while( $tempRow = $xoopsDB->fetchrow($result) ){

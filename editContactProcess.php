@@ -23,7 +23,7 @@ $serial = $_POST['serial'];
 $carer = $_POST['carer'];
 
 $sql = 
-  "Update ".$xoopsDB->prefix("torch_pastoralrecords").
+  "Update ".$xoopsDB->prefix("torch_pastoral_records").
   " SET RecordTime = '$startDate', 
   RecentSituation = '$recentSituation',
   Carer = '$carer'

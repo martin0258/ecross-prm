@@ -6,7 +6,7 @@
  * @package           page
  * @version           2012/02/28 File created.
  */
-include_once dirname(dirname(dirname(dirname(__FILE__)))).'\mainfile.php';
+include_once dirname(dirname(dirname(dirname(__FILE__)))).'/mainfile.php';
 include XOOPS_ROOT_PATH.'/header.php';
 ?>
 <h1>有關此功能</h1>

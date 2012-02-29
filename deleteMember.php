@@ -23,7 +23,7 @@ $memberIDarr = $_POST['memberId'];     //get the checkbox array
 foreach ($memberIDarr as $memberID) {
   //有照片的話刪除
   $sql = 
-    "Select PictureSavingPath From ".$xoopsDB->prefix("torch_memberinformation").
+    "Select PictureSavingPath From ".$xoopsDB->prefix("torch_member_information").
     " Where MemberID=$memberID";
   $result = $xoopsDB->query($sql);
   $path = mysql_result($result, 0);
@@ -31,12 +31,12 @@ foreach ($memberIDarr as $memberID) {
 
   //刪除訪談記錄
   $sql = 
-    "Delete From ".$xoopsDB->prefix("torch_pastoralrecords").
+    "Delete From ".$xoopsDB->prefix("torch_pastoral_records").
     " Where MemberInformation_MemberID=$memberID";
   $delete_care_result = $xoopsDB->query($sql);
 
   //刪除會員資料
-  $sql = "Delete From ".$xoopsDB->prefix("torch_memberinformation")." Where MemberID=$memberID";
+  $sql = "Delete From ".$xoopsDB->prefix("torch_memberin_formation")." Where MemberID=$memberID";
   $delete_info_result = $xoopsDB->query($sql);
 
   $total_result &= $delete_care_result && $delete_info_result;

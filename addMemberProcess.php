@@ -130,7 +130,7 @@ if(isset($_POST['group_select2']) && $_POST['group_select2'] != ''){
 //開始匯入
 $uname = $xoopsUser->uname();
 $sql = 
-  "INSERT INTO ".$xoopsDB->prefix("torch_memberinformation")."(FirstVisitDate, 
+  "INSERT INTO ".$xoopsDB->prefix("torch_member_information")."(FirstVisitDate, 
   ChineseName, EnglishName, Email, Birthday, Sex, CellPhoneNumber, MailingAddress_ZipCode, 
   MailingAddress_Nationality, MailingAddress_Country, MailingAddress_Township, MailingAddress_Detail, 
   Marriage, Source, BeliefStatus, HomePhoneNumber, Introducer, IntroducerPhoneNumber, Job, Note,

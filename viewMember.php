@@ -46,14 +46,14 @@ $sql =
   MailingAddress_Detail, Email, Job, SchoolYear, BeliefStatus, BeliefStatus_Memo, Introducer,
   IntroducerPhoneNumber, Introducer_FamilyName, Introducer_FamilyPhone, HowToKnowTorch, HowToKnowTorch_Memo,
   LikeTorchReason, LikeTorchReasonMemo, TorchImprovement, TorchImprovementMemo, NeedService, Intercession,
-  Note, PictureSavingPath FROM ".$xoopsDB->prefix('torch_memberinformation').
-  " tm LEFT OUTER JOIN ".$xoopsDB->prefix('torch_grouplists').
+  Note, PictureSavingPath FROM ".$xoopsDB->prefix('torch_member_information').
+  " tm LEFT OUTER JOIN ".$xoopsDB->prefix('torch_group_lists').
   " tg ON tm.GroupLists_GroupID = tg.GroupID WHERE tm.MemberID = '$memberID'";
 $result = $xoopsDB->query($sql);
 $row = $xoopsDB->fetchrow($result);
 
 # Get the Group Category
-$sqlGroup = "SELECT DISTINCT(GroupCategory) FROM ".$xoopsDB->prefix('torch_GroupLists');
+$sqlGroup = "SELECT DISTINCT(GroupCategory) FROM ".$xoopsDB->prefix('torch_group_lists');
 $result = $xoopsDB->query($sqlGroup);
 $groupArr = array();
 while( $tempRow = $xoopsDB->fetchrow($result) ){

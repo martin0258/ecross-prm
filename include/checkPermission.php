@@ -6,7 +6,7 @@
  * @package           page
  * @version           2012/02/27 File created.
  */
-include dirname(dirname(dirname(dirname(__FILE__)))).'\mainfile.php';
+include dirname(dirname(dirname(dirname(__FILE__)))).'/mainfile.php';
 
 $_SESSION['mod1'] = false;
 $_SESSION['mod2'] = false;

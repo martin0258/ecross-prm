@@ -16,10 +16,10 @@ function xoops_module_uninstall_torch_newmember($xoopsMod) {
   global $xoopsDB;
   $strDeleteSQL = "DROP TABLE IF EXISTS ";
   $tables = array(
-    'torch_SpecialtyLists', 
-    'torch_ServiceLists', 
-    'torch_GroupLists', 
-    'torch_MemberInformation');
+    'torch_specialty_lists', 
+    'torch_service_lists', 
+    'torch_group_lists', 
+    'torch_member_information');
   $sumResult = true;
   foreach($tables as $tableName){
     $sumResult &= $xoopsDB->query($strDeleteSQL . $xoopsDB->prefix($tableName));

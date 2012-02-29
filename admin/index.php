@@ -35,8 +35,8 @@ foreach ($item_list as $item_id => $item_name) {
   $forma->addItem($item_id, $item_name);
 }
 
-$sql = "SELECT tg.GroupLeaderMail FROM ".$xoopsDB->prefix('torch_GroupLists').
-  " tg INNER JOIN " .$xoopsDB->prefix('torch_SystemVariable').
+$sql = "SELECT tg.GroupLeaderMail FROM ".$xoopsDB->prefix('torch_group_lists').
+  " tg INNER JOIN " .$xoopsDB->prefix('torch_system_variable').
   " ts ON ts.Value = tg.GroupID AND ts.VariableName='TestGroupID'";
 $result = $xoopsDB->query($sql);
 $testOn = (mysql_num_rows($result)>0);

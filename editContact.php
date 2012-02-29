@@ -40,8 +40,8 @@ $serial = $_POST['serial'];
 $sql =
   "SELECT CASE WHEN tm.ChineseName != '' THEN tm.ChineseName ELSE tm.EnglishName END AS NAME,
   tp.RecordTime, tp.Carer, tp.RecentSituation ".
-  "FROM ".$xoopsDB->prefix("torch_pastoralrecords").
-  " tp INNER JOIN ".$xoopsDB->prefix('torch_memberinformation').
+  "FROM ".$xoopsDB->prefix("torch_pastoral_records").
+  " tp INNER JOIN ".$xoopsDB->prefix('torch_member_information').
   " tm ON tp.MemberInformation_MemberID = tm.MemberID WHERE tp.RecordSerial = '$serial'";
 $result = $xoopsDB->query($sql);
 $row = $xoopsDB->fetchrow($result);

@@ -20,7 +20,7 @@ $changeList = array();
 
 #建立二維陣列[組別][新朋友ID]
 $sql_changeList = 
-  "SELECT GroupLists_GroupID, MemberID FROM ".$xoopsDB->prefix("torch_memberinformation").
+  "SELECT GroupLists_GroupID, MemberID FROM ".$xoopsDB->prefix("torch_member_information").
   " WHERE GroupLists_GroupID != GroupID_TEMP OR (GroupLists_GroupID>0 AND GroupID_TEMP IS NULL)".
   " ORDER BY GroupLists_GroupID, MemberID";
 $result = $xoopsDB->query($sql_changeList);
@@ -37,7 +37,7 @@ while( $row = $xoopsDB->fetchrow($result) ){
 # 建立各組人員連結，將對應的值填入newMember.tpl
 foreach( $changeList as $groupID=>$memberIDList){
   $sql_groupDetail = 
-    "SELECT GroupName, GroupLeaderMail FROM ".$xoopsDB->prefix("torch_GroupLists").
+    "SELECT GroupName, GroupLeaderMail FROM ".$xoopsDB->prefix("torch_group_lists").
     " WHERE GroupID = '$groupID'";
   $result = $xoopsDB->query($sql_groupDetail);
   $groupName = mysql_result($result, 0, 0);
@@ -79,7 +79,7 @@ foreach( $changeList as $groupID=>$memberIDList){
     }
     $sql_IDlist = substr($sql_IDlist, 0, strlen($sql_IDlist)-1);
     $sql_update = 
-      " UPDATE ".$xoopsDB->prefix("torch_memberinformation").
+      " UPDATE ".$xoopsDB->prefix("torch_member_information").
       " SET GroupID_TEMP=GroupLists_GroupID".
       " WHERE MemberID IN($sql_IDlist)";
     $result = $xoopsDB->queryF($sql_update);
