@@ -2,9 +2,10 @@
 /** 
  * Description:
  * 無SESSION['newMemberList']之時，push他們提供帳號跟小組對應關係。
+ *
  * @author            Martin Ku
  * @package           page
- * @version           2012/02/28 File created.
+ * @version           2012/03/02 File created.
  */
 include_once dirname(dirname(dirname(dirname(__FILE__)))).'/mainfile.php';
 include XOOPS_ROOT_PATH.'/header.php';

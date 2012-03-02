@@ -79,7 +79,7 @@ if(isset($_SESSION['mod1'])){
   }
   if($_SESSION['mod7']==true){
     $modversion['sub'][5]['name'] = '小組新人';
-    $modversion['sub'][5]['url'] = 'mailLink.php';
+    $modversion['sub'][5]['url'] = 'groupNewMember.php';
   }
 }
 ?>

@@ -2,8 +2,10 @@
 /** 
  * Description: 
  * This file contains the functions executed after the module has been installed
- * @author Martin Ku
- * @package xoops
+ *
+ * @author          Martin Ku
+ * @package         xoops
+ * @version         2012/03/02 Add login_notification system_variable.
  */
 
 /**
@@ -25,6 +27,11 @@ function xoops_module_install_torch_newmember($xoopsMod) {
     " (VariableName, Value) VALUES ('logFilePath', '$logFilePath')";
   $result2 = $xoopsDB->query($strSetLogFilePath);
 
+  # 設定Log file path
+  $sql = "INSERT INTO ".$xoopsDB->prefix('torch_system_variable').
+    " (VariableName, Value) VALUES ('login_notification', '1')";
+  $result3 = $xoopsDB->query($sql);
+
   # 設定foreign constraint: 先將table engine改成InnoDB，再加入constraint
   /*
   $tables = array('torch_group_lists', 'torch_member_information');
@@ -32,6 +39,6 @@ function xoops_module_install_torch_newmember($xoopsMod) {
     $strChgEngine = "ALTER TABLE ".$xoopsDB->prefix($table)." ENGINE=InnoDB";
     $result3 &= $xoopsDB->query($strChgEngine);
   }*/
-  return $result && $result2;
+  return $result && $result2 & $result3;
 }
 ?>
