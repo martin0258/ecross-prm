@@ -28,7 +28,7 @@ CREATE TABLE torch_group_lists (
   ViceLeaderMail VARCHAR(120)  NULL COMMENT '預備領袖E-mail',
   Active_Flag tinyint(1) NOT NULL DEFAULT '1' COMMENT '小組存在與否',  
 PRIMARY KEY(GroupID)
-)ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
+)ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
 
 CREATE TABLE torch_member_information (
   MemberID INTEGER(10) UNSIGNED  NOT NULL AUTO_INCREMENT COMMENT '會友編號',
@@ -605,7 +605,7 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (25, '李睿哲', '動力火', '學生', 'abrahamlee007@hotmail.com', 'gill0317@hotmail.com', 1),
 (26, '王子銘', '火大', '學生', 'tayalgary@gmail.com', 'cjl315@gmail.com', 1),
 (27, '黃欣蓉', '火山口', '學生', 'sebrinahuang61579@gmail.com', 'pipi722@livemail.tw', 1),
-(28, '尚至義', '疾風烈火', '學生', 'secrecy1024@gmail.com', 'lovejane2003@yahoo.com.tw,memorieschain@hotmail.com', 1),
+(28, '尚至義', '疾風烈火', '學生', 'secrecy1024@gmail.com', '', 1),
 (29, '葉晏翠', '火星人', '學生', 'jesus_islove@hotmail.com', '', 0),
 (30, '卡伊‧馬賴', 'J-Power小組', '學生', 'haleluyadavid@hotmail.com', '', 0),
 (31, '賴春華', '信望愛', '銘潔區', 'rebecca99530@hotmail.com', '', 0),
@@ -627,7 +627,7 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (49, '侯麗婷', 'wonderland', '麗婷區', 'litin719@gmail.com', 'jual19780629@hotmail.com', 1),
 (50, 'Jennifer', '真理・發光', '小芸區', 'torch.admin@gmail.com', NULL, 1),
 (51, '小芸', '外文', '小芸區', 'liuanna0205@gmail.com', 'bernicestar@gmail.com', 1),
-(52, '許博鈞', '精兵', '冠利區', NULL, NULL, 1),
+(52, '許博鈞', '精兵', '冠利區', 'vovodog@gmail.com', NULL, 1),
 (53, '鉅翔', '電火石', '冠利區', 'toygun168@gmail.com', NULL, 1),
 (54, '安怡', 'Sunday Shekinah', '銘潔區', 'ddwu0426@yahoo.com.tw', NULL, 1),
 (55, '雪蓮', 'Sunday Eden', '銘潔區', 'a0802873@ntat.gov.tw', NULL, 1),

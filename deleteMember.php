@@ -2,8 +2,9 @@
 /** 
  * Description:
  * 刪除勾選的新人。[queryResultDelete.php]的[刪除新人]按鈕之後端處理頁。
- * @author Martin Ku
- * @package backend
+ *
+ * @author          Martin Ku
+ * @package         backend
  */
 include '../../mainfile.php';
 
@@ -36,7 +37,7 @@ foreach ($memberIDarr as $memberID) {
   $delete_care_result = $xoopsDB->query($sql);
 
   //刪除會員資料
-  $sql = "Delete From ".$xoopsDB->prefix("torch_memberin_formation")." Where MemberID=$memberID";
+  $sql = "Delete From ".$xoopsDB->prefix("torch_member_information")." Where MemberID=$memberID";
   $delete_info_result = $xoopsDB->query($sql);
 
   $total_result &= $delete_care_result && $delete_info_result;
