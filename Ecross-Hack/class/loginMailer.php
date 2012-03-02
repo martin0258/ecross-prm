@@ -1,10 +1,11 @@
 <?php
 /** 
  * Description:
- * Send mail or log the login message.
+ * Send notification Email and log the login action.
+ *
  * @author            Martin Ku
  * @package           own-library
- * @version           2012/02/28 Add the comment block
+ * @version           2012/03/02 Move it to Ecross-Hack directory.
  */
 
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
@@ -60,7 +61,8 @@ class LoginMailer {
     global $xoopsConfig;
     $xoopsMailer =& xoops_getMailer();
     $xoopsMailer->useMail();
-    $xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/mail_template/');
+    //$xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/mail_template/');
+    $xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH.'/Ecross-Hack/mail_template/');
     $xoopsMailer->setTemplate($this->mailTemplate);
     $xoopsMailer->assign("X_UNAME", $this->user_account);
     $xoopsMailer->assign("IP", $_SERVER['REMOTE_ADDR']);

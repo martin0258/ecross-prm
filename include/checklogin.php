@@ -1,9 +1,10 @@
 <?php
 /** 
  * Description:       Search torch for changes. See README for more info.
+ *
  * @author            Martin Ku
  * @package           xoops
- * @version           2012/02/29 Use 2.5.4 version
+ * @version           2012/03/01 Redirect to groupNewMember.php
  */
 
 /**
@@ -25,12 +26,12 @@
  */
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
-/*
- * Load torch loginMailer
- */
-if (!file_exists($file = XOOPS_ROOT_PATH . '/class/loginMailer.php')) {
-}else{
-    include_once XOOPS_ROOT_PATH . '/class/loginMailer.php';
+/* Load torch loginMailer */
+require_once XOOPS_ROOT_PATH.'/Ecross-Hack/function/funcs.php';
+if((bool)getSysVar('login_notification')){
+  //系統變數設定1才啟動此功能
+  if (!file_exists($file = XOOPS_ROOT_PATH . '/Ecross-Hack/class/loginMailer.php')) {
+  }else{ include_once XOOPS_ROOT_PATH . '/Ecross-Hack/class/loginMailer.php'; }
 }
 /* End of Load torch loginMailer*/
 
@@ -55,8 +56,10 @@ $user = $xoopsAuth->authenticate($myts->addSlashes($uname), $myts->addSlashes($p
 
 if (false != $user) {
     /* Embedded code for torch loginMailer */
-    $loginMail = new LoginMailer($uname);
-    $loginMail->loginSuccess();
+    if(class_exists('LoginMailer')){
+      $loginMail = new LoginMailer($uname);
+      $loginMail->loginSuccess();
+    }
     /* End of torch loginMailer */
     if (0 == $user->getVar('level')) {
         redirect_header(XOOPS_URL.'/index.php', 5, _US_NOACTTPADM);
@@ -133,8 +136,8 @@ if (false != $user) {
 
     /*Start Code of torch*/
     if(isset($_SESSION['newMemberList'])){
-      redirect_header($url.'/modules/torch_newmember/mailLink.php', 1, 
-        sprintf(_US_LOGGINGU, $user->getVar('uname')).'<br>以下是本次小組新人<br>要記得聯絡喔:)', false);
+      redirect_header($url.'/modules/torch_newmember/groupNewMember.php', 1,
+      sprintf(_US_LOGGINGU, $user->getVar('uname')).'<br>以下是本次小組新人<br>要記得聯絡喔:)', true);
     }else{
       redirect_header($url, 1, sprintf(_US_LOGGINGU, $user->getVar('uname')), false);
     }
@@ -146,8 +149,10 @@ if (false != $user) {
     redirect_header(XOOPS_URL . '/user.php', 5, $xoopsAuth->getHtmlErrors());
 } else {
     /* Embedded code for torch loginMailer */
-    $loginMail = new LoginMailer($uname);
-    $loginMail->loginFail();
+    if(class_exists('LoginMailer')){
+      $loginMail = new LoginMailer($uname);
+      $loginMail->loginFail();
+    }
     /* End of torch loginMailer */
     redirect_header(XOOPS_URL . '/user.php?xoops_redirect=' . urlencode(trim($_POST['xoops_redirect'])), 5, $xoopsAuth->getHtmlErrors(), false);
 }
