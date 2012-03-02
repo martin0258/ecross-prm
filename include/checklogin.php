@@ -4,7 +4,7 @@
  *
  * @author            Martin Ku
  * @package           xoops
- * @version           2012/03/01 Redirect to groupNewMember.php
+ * @version           2012/03/02 Redirect to torch_newmember after login.
  */
 
 /**
@@ -139,7 +139,10 @@ if (false != $user) {
       redirect_header($url.'/modules/torch_newmember/groupNewMember.php', 1,
       sprintf(_US_LOGGINGU, $user->getVar('uname')).'<br>以下是本次小組新人<br>要記得聯絡喔:)', true);
     }else{
-      redirect_header($url, 1, sprintf(_US_LOGGINGU, $user->getVar('uname')), false);
+      //新人名單模組存在的話，登入後導向模組首頁
+      if(file_exists($module_url = XOOPS_ROOT_PATH.'/modules/torch_newmember/index.php'))
+      {redirect_header(XOOPS_URL.'/modules/torch_newmember/', 1, sprintf(_US_LOGGINGU, $user->getVar('uname')), false);}
+      else{ redirect_header($url, 1, sprintf(_US_LOGGINGU, $user->getVar('uname')), false); }
     }
     /*End Code of torch*/
     /* Orginal Code
