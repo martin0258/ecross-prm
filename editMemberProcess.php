@@ -130,6 +130,14 @@ $message = '資料已更新';
 $redirect_url = 'viewMember.php';
 //處理更新圖片
 if( is_uploaded_file($_FILES['imgURL']['tmp_name']) ){
+  // check for uploaded file size
+  if ($_FILES['imgURL']['size'] > 1000000 )
+  { die('file size too large, must smaller than 1M'); }
+
+  //check if its image file
+  if (!getimagesize($_FILES['imgURL']['tmp_name']))
+  { die ('invalid file, please check file format'); }
+
   $DestDIR = "images/member";
   if( !is_dir($DestDIR) || !is_writeable($DestDIR) )
     die("目錄不存在或無法寫入");
