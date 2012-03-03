@@ -16,7 +16,8 @@ include XOOPS_ROOT_PATH.'/header.php';
 <div><pre>
 請利用左邊選單進行操作。
 
-歡迎來信詢問任何使用上的問題-><input type="button" value="連絡Ecross" onclick="self.location.href='mailto:ecross.mail@gmail.com';"style='color:#0200A0'>
+歡迎來信詢問操作問題或給予建議-><input type="button" value="連絡Ecross" onclick="self.location.href='mailto:ecross.mail@gmail.com';"style='color:#0200A0'>
+Email:<a href='mailto:ecross.mail@gmail.com'>ecross.mail@gmail.com</a>
 </pre></div>
 </div>
 <?php
