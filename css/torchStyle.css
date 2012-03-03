@@ -222,3 +222,16 @@ div.contact{
 .pageOption {
   margin: 5px 0 0 0;
 }
+
+/* ===== Others ===== */
+.underconstruction { 
+  background:url(http://animatedgif.net/underconstruction/constructionspin_e0.gif) top left no-repeat;
+  padding-left: 55px;
+  min-height:37px;
+}
+
+/* ===== Pagination ===== */
+.Button.first{ background: url(http://tympanus.net/jPaginate/images/sprevious.png) no-repeat center; }
+.Button.prev { background: transparent url(http://tympanus.net/jPaginate/images/previous.png) no-repeat center; }
+.Button.next { background: transparent url(http://tympanus.net/jPaginate/images/next.png) no-repeat center; }
+.Button.last { background: transparent url(http://tympanus.net/jPaginate/images/snext.png) no-repeat center; }

@@ -90,6 +90,7 @@ class pager {
   public function get_links($link){
     $strLinks = "";
     $cssClass = 'Button';
+    $buttonText = '&nbsp;&nbsp;';
 
     //如果總共只有1頁，不顯示任何連結
     if($this->how_many_pages() == 1 ){
@@ -97,8 +98,8 @@ class pager {
       return $strLinks; 
     }
     if($this->page_now > 1){
-      $strLinks .= "<a class='$cssClass' href=$link?page=1>首頁</a>";
-      $strLinks .= "<a class='$cssClass' href=$link?page=".($this->page_now - 1).">上一頁</a>";
+      $strLinks .= "<a title='回第一頁' class='$cssClass first' href=$link?page=1>$buttonText</a>";
+      $strLinks .= "<a title='上一頁' class='$cssClass prev' href=$link?page=".($this->page_now - 1).">$buttonText</a>";
     }
     $start = $this->page_now;
     if($this->how_many_pages() - $start + 1 < $this->link_per_page){
@@ -110,8 +111,8 @@ class pager {
       else{ $strLinks .= "<a class='$cssClass' href=$link?page=$i>$i</a>"; }
     }
     if($this->page_now < $this->how_many_pages()){
-      $strLinks .= "<a class='$cssClass' href=$link?page=".($this->page_now + 1).">下一頁</a>"; 
-      $strLinks .= "<a class='$cssClass' href=$link?page=".($this->how_many_pages()).">末頁</a>";
+      $strLinks .= "<a title='下一頁' class='$cssClass next' href=$link?page=".($this->page_now + 1).">$buttonText</a>"; 
+      $strLinks .= "<a title='最後一頁' class='$cssClass last' href=$link?page=".($this->how_many_pages()).">$buttonText</a>";
     }
     $strLinks .= "&nbsp;共".$this->how_many_pages()."頁";
     return $strLinks;
