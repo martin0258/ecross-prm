@@ -619,7 +619,7 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (39, '李冠利', '甜蜜蜜', '冠利區', 'guanliyuli@gmail.com', 'Popularise@yahoo.com.tw,tinng19821106@hotmail.com', 1),
 (40, '郭曾麗霞', '哈拿', '銘潔區', 'hsia2933@gmail.com', '', 1),
 (42, '范嘉芹', '火鑽石', '小芸區', 'godanswersprayers@hotmail.com', 'toma886@gmail.com', 1),
-(44, '楊永菊', '以斯帖', '心怡區', 'daisy111111@gmail.com.tw', '', 1),
+(44, '楊永菊', '以斯帖', '心怡區', 'daisy111111@gmail.com', '', 1),
 (45, '江芊慧', '活水', '心怡區', 'omygod713@hotmail.com', 'yi-yun.kao@mitsubishicorp.com', 1),
 (46, '廖添發', '沙瑪', '銘潔區', 'tienfa.liao@gmail.com', '', 1),
 (47, '楊士芳', 'J Power', '學生', 'holypowerfire@gmail.com', 'pipi722@livemail.tw', 1),
