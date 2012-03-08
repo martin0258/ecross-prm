@@ -7,6 +7,12 @@
 -- 
 -- --------------------------------------------------------
 
+CREATE TABLE torch_pastoral_area (
+  PastoralAreaID INTEGER(10)   NOT NULL COMMENT '牧區編號',
+  PastoralAreaName VARCHAR(20)  COMMENT '牧區名稱',
+  LeaderID MEDIUMINT(8) COMMENT '牧區長ID'  ,
+PRIMARY KEY(PastoralAreaID));
+
 CREATE TABLE torch_specialty_lists (
   SpecialtyID INTEGER(10) UNSIGNED  NOT NULL AUTO_INCREMENT COMMENT '專長編號',
   SpecialtyItem VARCHAR(20)  NOT NULL  COMMENT '專長項目',
@@ -582,13 +588,13 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (2, '蘇文奕', '真男人', '銘潔區', 'eanwen@yahoo.com.tw', 'kuawai@msn.com', 1),
 (3, '王銘潔', '火戰車', '銘潔區', 'wmj07@yahoo.com.tw', 'goomos67@yahoo.com.tw', 1),
 (4, '李冠利', '霹靂火', '冠利區', 'guanliyuli@gmail.com', 'vovodog@gmail.com', 1),
-(5, '周祐平', '火力旺', '冠利區', 'heymanchou@gmail.com', 'wing902919@gmail.com', 1),
-(6, '林殷立', '電火球', '冠利區', 'ff6393@gmail.com', 'ewayne1140@gmail.com,toygun168@gmail.com', 1),
+(5, '周祐平', '火力旺', '冠利區', 'heymanchou@gmail.com', '', 1),
+(6, '林殷立', '電火球', '冠利區', 'ff6393@gmail.com', '', 1),
 (7, '劉小芸', '嬌娃', '小芸區', 'liuanna0205@gmail.com', 'plutoovh@gmail.com,bandfy@yahoo.com.tw,yoyarain@gmail.com\n', 1),
 (8, '史凱菱', '火把向日葵', '小芸區', 'dinoks421@hotmail.com', '', 0),
 (9, '怡伶', '火花', '小芸區', 'eleenylc@gmail.com', '', 1),
 (10, '黃心苓', 'LAVA', '小芸區', 'erin527hsl@gmail.com', '', 1),
-(11, '王心怡', '神蹟', '心怡區', 'maiiwang651001@gmail.com', 'vitake_0123@yahoo.com.tw', 1),
+(11, '王心怡', '神蹟', '心怡區', 'maiiwang651001@gmail.com', '', 1),
 (12, '徐禕棋', '烈火瑞瑪', '心怡區', 'sharon.hsu@wpi-group.com', 'eai_2284167@hotmail.com', 1),
 (13, '柯綉玲', '火把奇異火', '心怡區', 'vitake_0123@yahoo.com.tw', '', 0),
 (14, '廖方瑜', '火寶貝', '小芸區', 'stella81@mail.7-11.com.tw', '', 1),
@@ -604,7 +610,7 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (24, '王子銘', '鮮焱', '學生', 'tayalgary@gmail.com', '', 0),
 (25, '李睿哲', '動力火', '學生', 'abrahamlee007@hotmail.com', 'gill0317@hotmail.com', 1),
 (26, '王子銘', '火大', '學生', 'tayalgary@gmail.com', 'cjl315@gmail.com', 1),
-(27, '黃欣蓉', '火山口', '學生', 'sebrinahuang61579@gmail.com', 'pipi722@livemail.tw', 1),
+(27, '黃欣蓉', '火山口', '小芸區', 'sebrinahuang61579@gmail.com', '', 1),
 (28, '尚至義', '疾風烈火', '學生', 'secrecy1024@gmail.com', '', 1),
 (29, '葉晏翠', '火星人', '學生', 'jesus_islove@hotmail.com', '', 0),
 (30, '卡伊‧馬賴', 'J-Power小組', '學生', 'haleluyadavid@hotmail.com', '', 0),
@@ -616,7 +622,7 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (36, '張光中', '火光', '永成區', 'ch.smallj@msa.hinet.net', '', 1),
 (37, '劉精中', '火焰', '冠利區', 'liu65111@gmail.com', 'mslatte77@gmail.com,liephai@gmail.com', 1),
 (38, '詹富閔', '愛家倍', '永成區', 'iantorch@gmail.com', '', 1),
-(39, '李冠利', '甜蜜蜜', '冠利區', 'guanliyuli@gmail.com', 'Popularise@yahoo.com.tw,tinng19821106@hotmail.com', 1),
+(39, '李冠利', '甜蜜蜜', '冠利區', 'guanliyuli@gmail.com', 'Popularise@yahoo.com.tw,ting19821106@hotmail.com', 1),
 (40, '郭曾麗霞', '哈拿', '銘潔區', 'hsia2933@gmail.com', '', 1),
 (42, '范嘉芹', '火鑽石', '小芸區', 'godanswersprayers@hotmail.com', 'toma886@gmail.com', 1),
 (44, '楊永菊', '以斯帖', '心怡區', 'daisy111111@gmail.com', '', 1),
@@ -630,6 +636,6 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (52, '許博鈞', '精兵', '冠利區', 'vovodog@gmail.com', NULL, 1),
 (53, '鉅翔', '電火石', '冠利區', 'toygun168@gmail.com', NULL, 1),
 (54, '安怡', 'Sunday Shekinah', '銘潔區', 'ddwu0426@yahoo.com.tw', NULL, 1),
-(55, '雪蓮', 'Sunday Eden', '銘潔區', 'a0802873@ntat.gov.tw', NULL, 1),
+(55, '雪蓮', 'Sunday Eden', '銘潔區', 'cassic7708@kimo.com', NULL, 1),
 (56, '淑珍', '豐盛', '銘潔區', 'vita7277@yahoo.com.tw', NULL, 1),
 (57, '吳曼瑄', '火樂', '學生', 'edc414@gmail.com', 'xm30703@hotmail.com', 1);
