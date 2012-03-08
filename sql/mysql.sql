@@ -630,6 +630,6 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (52, '許博鈞', '精兵', '冠利區', 'vovodog@gmail.com', NULL, 1),
 (53, '鉅翔', '電火石', '冠利區', 'toygun168@gmail.com', NULL, 1),
 (54, '安怡', 'Sunday Shekinah', '銘潔區', 'ddwu0426@yahoo.com.tw', NULL, 1),
-(55, '雪蓮', 'Sunday Eden', '銘潔區', 'a0802873@ntat.gov.tw', NULL, 1),
+(55, '雪蓮', 'Sunday Eden', '銘潔區', 'cassic7708@kimo.com', NULL, 1),
 (56, '淑珍', '豐盛', '銘潔區', 'vita7277@yahoo.com.tw', NULL, 1),
 (57, '吳曼瑄', '火樂', '學生', 'edc414@gmail.com', 'xm30703@hotmail.com', 1);
