@@ -3,8 +3,9 @@
  * Description:
  * 寄發新人名單通知信給小組長。用排程的方式呼叫此檔案。
  *
- * @author Martin Ku
- * @package own-library
+ * @author          Martin Ku
+ * @package         backend
+ * @version         2012/03/10 Last update
  */
 set_time_limit(6000);
 include '../mainfile.php';
@@ -58,7 +59,19 @@ foreach( $changeList as $groupID=>$memberIDList){
   $xoopsMailer->assign("NEW_MEMBER_COUNT", count($memberIDList));
   $xoopsMailer->assign("GROUPNAME", $groupName);
   $xoopsMailer->assign("LINK", $link);
-  $xoopsMailer->setToEmails($groupLeaderMail);
+  $xoopsMailer->addHeaders('Content-Type: text/html; charset=ISO-8859-7');
+  //寄信給預備領袖
+  $strSQL = "SELECT ViceLeaderMail FROM ".$xoopsDB->prefix('torch_group_lists').
+    " WHERE GroupID = '$groupID'";
+  $result = $xoopsDB->query($strSQL);
+  $viceMails = explode(',', mysql_result($result, 0) );
+  $toEmails = array();
+  foreach ($viceMails as $viceMail) {
+    array_push($toEmails, $viceMail);
+  }
+  array_push($toEmails, $groupLeaderMail);
+
+  $xoopsMailer->setToEmails($toEmails);
   $xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
   $xoopsMailer->setFromName($xoopsConfig['sitename']);
   $xoopsMailer->setSubject($mailSubject);
@@ -75,14 +88,10 @@ foreach( $changeList as $groupID=>$memberIDList){
       "Success on " . date("Y-m-d H:i:s").", Message sent to $groupID-$groupName $groupLeaderMail\n");
 
     //Sync GroupID and GroupID_Temp
-    foreach( $memberIDList as $memberID){
-      $sql_IDlist .= "'$memberID',";
-    }
-    $sql_IDlist = substr($sql_IDlist, 0, strlen($sql_IDlist)-1);
     $sql_update = 
       " UPDATE ".$xoopsDB->prefix("torch_member_information").
       " SET GroupID_TEMP=GroupLists_GroupID".
-      " WHERE MemberID IN($sql_IDlist)";
+      " WHERE MemberID IN($IDlist)";
     $result = $xoopsDB->queryF($sql_update);
   }
 }

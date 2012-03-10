@@ -59,11 +59,11 @@ foreach( $changeList as $groupID=>$memberIDList){
   $xoopsMailer->assign("NEW_MEMBER_COUNT", count($memberIDList));
   $xoopsMailer->assign("GROUPNAME", $groupName);
   $xoopsMailer->assign("LINK", $link);
+  $xoopsMailer->addHeaders('Content-Type: text/html; charset=ISO-8859-7');
 
   # 過渡期的CODE區段:
   # 1. 仍然附送table 
   # 2. CC給預備領袖
-  $xoopsMailer->addHeaders('Content-Type: text/html; charset=ISO-8859-7');
   //建立新人table
   $table = "<table border='1'><tr>
     <th align ='center'>第一次來教會日期</th>
@@ -73,10 +73,9 @@ foreach( $changeList as $groupID=>$memberIDList){
     <th align ='center'>電子郵件</th>
     <th align ='center'>地址</th>
     </tr>";
-  $sql_ID = str_replace('j',',',$IDlist);
   $sql="Select FirstVisitDate, ChineseName, EnglishName, CellPhoneNumber, Email,
     MailingAddress_Detail from ".$xoopsDB->prefix("torch_member_information").
-    " WHERE MemberID IN($sql_ID)";
+    " WHERE MemberID IN($IDlist)";
   $result = $xoopsDB->query($sql);
   while( $row = $xoopsDB->fetchrow($result)){
     $table .= "<tr>";
@@ -106,7 +105,7 @@ foreach( $changeList as $groupID=>$memberIDList){
 
   fwrite($should_fp, date("Y-m-d H:i:s").":Message should send to $groupID-$groupName $groupLeaderMail\n");
   if (!$xoopsMailer->send()) {
-    error_log($xoopsMailer->getErrors());
+    error_log("xoopsMailer Error: ".$xoopsMailer->getErrors());
     fwrite( $mail_fp, 
       "Fail on " . date("Y-m-d H:i:s").", Message sent to $groupID-$groupName $groupLeaderMail, ".
       "Error:".$xoopsMailer->getErrors(). "\n");
@@ -116,14 +115,10 @@ foreach( $changeList as $groupID=>$memberIDList){
       "Success on " . date("Y-m-d H:i:s").", Message sent to $groupID-$groupName $groupLeaderMail\n");
 
     //Sync GroupID and GroupID_Temp
-    foreach( $memberIDList as $memberID){
-      $sql_IDlist .= "'$memberID',";
-    }
-    $sql_IDlist = substr($sql_IDlist, 0, strlen($sql_IDlist)-1);
     $sql_update = 
       " UPDATE ".$xoopsDB->prefix("torch_member_information").
       " SET GroupID_TEMP=GroupLists_GroupID".
-      " WHERE MemberID IN($sql_IDlist)";
+      " WHERE MemberID IN($IDlist)";
     $result = $xoopsDB->queryF($sql_update);
   }
 }
