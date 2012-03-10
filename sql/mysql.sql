@@ -587,7 +587,7 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (1, '宇安', '迦勒', '永成區', 'andypassat@gmail.com', '', 1),
 (2, '蘇文奕', '真男人', '銘潔區', 'eanwen@yahoo.com.tw', 'kuawai@msn.com', 1),
 (3, '王銘潔', '火戰車', '銘潔區', 'wmj07@yahoo.com.tw', 'goomos67@yahoo.com.tw', 1),
-(4, '李冠利', '霹靂火', '冠利區', 'guanliyuli@gmail.com', 'vovodog@gmail.com', 1),
+(4, '李冠利', '霹靂火', '冠利區', 'guanliyuli@gmail.com', '', 1),
 (5, '周祐平', '火力旺', '冠利區', 'heymanchou@gmail.com', '', 1),
 (6, '林殷立', '電火球', '冠利區', 'ff6393@gmail.com', '', 1),
 (7, '劉小芸', '嬌娃', '小芸區', 'liuanna0205@gmail.com', 'plutoovh@gmail.com,bandfy@yahoo.com.tw,yoyarain@gmail.com\n', 1),
