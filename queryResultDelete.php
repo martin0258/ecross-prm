@@ -181,7 +181,7 @@ if(mysql_num_rows($result)==0){
   $tableFoot = "<tfoot><tr><td colspan=7><input type='submit' value='刪除新人'></td></tr></tfoot>";
   $xoopsTpl->assign('tableBody', $tableBody);
   $xoopsTpl->assign('tableFoot', $tableFoot);
-  $xoopsTpl->assign('pageLinks', $result_page->get_links('queryresultDelete.php'));
+  $xoopsTpl->assign('pageLinks', $result_page->get_links('queryResultDelete.php'));
   $xoopsTpl->assign('pages', range(1, $numOfPages));
   $xoopsTpl->assign('page', $page);
   $xoopsTpl->assign('rows_per_page_option', $rows_per_page);
