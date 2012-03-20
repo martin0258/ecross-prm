@@ -604,7 +604,7 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (18, '劉秋良', '火太陽', '心怡區', 'lcl9889@yahoo.com.tw', '9nhuang@rocks.com.tw', 1),
 (19, '王彥萍', '火柱', '小芸區', 'eliutpe@yahoo.com.tw', '', 1),
 (20, '戴承儀', '火力', '學生', 'diana-lgl@yahoo.com.tw', 'torch0612@gmail.com', 1),
-(21, '辛杰恩', '火種', '學生', 'peter1212128@hotmail.com', 'ann801203@hotmail.com', 1),
+(21, '辛杰恩', '火種', '學生', 'peter1212128@hotmail.com', '', 1),
 (22, '蔡惠宇', '火拉浦', '學生', 'sabrina_elsa12520@hotmail.com', 'tina796230@yahoo.com.tw', 1),
 (23, 'Sharon', '火高', '學生', 'skiang22@gmail.com', 'gloriawu814@hotmail.com', 1),
 (24, '王子銘', '鮮焱', '學生', 'tayalgary@gmail.com', '', 0),
@@ -638,4 +638,5 @@ INSERT INTO `torch_group_lists` (`GroupID`, `GroupLeaderName`, `GroupName`, `Gro
 (54, '安怡', 'Sunday Shekinah', '銘潔區', 'ddwu0426@yahoo.com.tw', NULL, 1),
 (55, '雪蓮', 'Sunday Eden', '銘潔區', 'cassic7708@kimo.com', NULL, 1),
 (56, '淑珍', '豐盛', '銘潔區', 'vita7277@yahoo.com.tw', NULL, 1),
-(57, '吳曼瑄', '火樂', '學生', 'edc414@gmail.com', 'xm30703@hotmail.com', 1);
+(57, '吳曼瑄', '火樂', '學生', 'edc414@gmail.com', 'xm30703@hotmail.com', 1),
+(58, '吳婕安', '火球', '學生', 'ann801203@hotmail.com', '', 1);
