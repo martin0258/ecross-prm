@@ -13,7 +13,6 @@ require_once 'function/encrypt.php';
 require_once 'function/funcs.php';
 
 # log
-$should_fp = fopen(getSysVar('logFilePath'), 'a+');
 $mail_fp = fopen(getSysVar('logFilePath'), 'a+');
 
 $mailSubject = '小組成員變動';
@@ -59,7 +58,7 @@ foreach( $changeList as $groupID=>$memberIDList){
   $xoopsMailer->assign("NEW_MEMBER_COUNT", count($memberIDList));
   $xoopsMailer->assign("GROUPNAME", $groupName);
   $xoopsMailer->assign("LINK", $link);
-  $xoopsMailer->addHeaders('Content-Type: text/html; charset=ISO-8859-7');
+  //$xoopsMailer->addHeaders('Content-Type: text/html; charset=ISO-8859-7');
 
   # 過渡期的CODE區段:
   # 1. 仍然附送table 
@@ -102,8 +101,9 @@ foreach( $changeList as $groupID=>$memberIDList){
   $xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
   $xoopsMailer->setFromName($xoopsConfig['sitename']);
   $xoopsMailer->setSubject($mailSubject);
+  $xoopsMailer->multimailer->isHTML(true);
 
-  fwrite($should_fp, date("Y-m-d H:i:s").":Message should send to $groupID-$groupName $groupLeaderMail\n");
+  fwrite($mail_fp, date("Y-m-d H:i:s").":Message should send to $groupID-$groupName $groupLeaderMail\n");
   if (!$xoopsMailer->send()) {
     error_log("xoopsMailer Error: ".$xoopsMailer->getErrors());
     fwrite( $mail_fp, 
@@ -111,6 +111,7 @@ foreach( $changeList as $groupID=>$memberIDList){
       "Error:".$xoopsMailer->getErrors(). "\n");
   }else{
     echo "Message sent to $groupLeaderMail Successfully!<BR>";
+    error_log("Message sent to $groupLeaderMail Successfully");
     fwrite($mail_fp, 
       "Success on " . date("Y-m-d H:i:s").", Message sent to $groupID-$groupName $groupLeaderMail\n");
 
@@ -124,6 +125,4 @@ foreach( $changeList as $groupID=>$memberIDList){
 }
 
 fclose($mail_fp);
-fclose($should_fp);
-
 ?>
