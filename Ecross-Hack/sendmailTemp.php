@@ -1,7 +1,7 @@
 <?php
 /** 
  * Description:
- * This file is the temporary of sendmail.php。在大家習慣登入的查看方式前，仍於信中附表格。
+ * This file is the temporary of sendmail.php?�在大家習慣?�入?�查?�方式�?，�??�信中�?表格??
  *
  * @author          Martin Ku
  * @package         backend
@@ -15,10 +15,10 @@ require_once 'function/funcs.php';
 # log
 $mail_fp = fopen(getSysVar('logFilePath'), 'a+');
 
-$mailSubject = '小組成員變動';
+$mailSubject = '小�??�員變�?';
 $changeList = array();
 
-#建立二維陣列[組別][新朋友ID]
+#建�?二維???[組別][?��??�ID]
 $sql_changeList = 
   "SELECT GroupLists_GroupID, MemberID FROM ".$xoopsDB->prefix("torch_member_information").
   " WHERE GroupLists_GroupID != GroupID_TEMP OR (GroupLists_GroupID>0 AND GroupID_TEMP IS NULL)".
@@ -34,7 +34,7 @@ while( $row = $xoopsDB->fetchrow($result) ){
 }
 //error_log(print_r($changeList, true));
 
-# 建立各組人員連結，將對應的值填入newMember.tpl
+# 建�??��?人員???，�?對�??��?填入newMember.tpl
 foreach( $changeList as $groupID=>$memberIDList){
   $sql_groupDetail = 
     "SELECT GroupName, GroupLeaderMail FROM ".$xoopsDB->prefix("torch_group_lists").
@@ -44,7 +44,7 @@ foreach( $changeList as $groupID=>$memberIDList){
   $groupLeaderMail = mysql_result($result, 0, 1);
   $IDlist = "";
   foreach( $memberIDList as $memberID){
-    //用逗號將新人ID分開
+    //?��??��??�人ID?��?
     $IDlist .= ($memberID.',');
   }
   $IDlist = substr($IDlist, 0, strlen($IDlist)-1);
@@ -60,17 +60,17 @@ foreach( $changeList as $groupID=>$memberIDList){
   $xoopsMailer->assign("LINK", $link);
   //$xoopsMailer->addHeaders('Content-Type: text/html; charset=ISO-8859-7');
 
-  # 過渡期的CODE區段:
-  # 1. 仍然附送table 
-  # 2. CC給預備領袖
-  //建立新人table
+  # ?�渡?��?CODE??��:
+  # 1. 仍然?��?table 
+  # 2. CC給�??��?�?
+  //建�??�人table
   $table = "<table border='1'><tr>
-    <th align ='center'>第一次來教會日期</th>
-    <th align ='center'>中文姓名</th>
-    <th align ='center'>英文姓名</th>
-    <th align ='center'>手機號碼</th>
-    <th align ='center'>電子郵件</th>
-    <th align ='center'>地址</th>
+    <th align ='center'>第�?次�??��??��?</th>
+    <th align ='center'>中�?姓�?</th>
+    <th align ='center'>?��?姓�?</th>
+    <th align ='center'>?��??�碼</th>
+    <th align ='center'>?��??�件</th>
+    <th align ='center'>?��?</th>
     </tr>";
   $sql="Select FirstVisitDate, ChineseName, EnglishName, CellPhoneNumber, Email,
     MailingAddress_Detail from ".$xoopsDB->prefix("torch_member_information").
@@ -85,7 +85,7 @@ foreach( $changeList as $groupID=>$memberIDList){
   }
   $table .= "</table>";
   $xoopsMailer->assign("TABLE", $table);
-  //寄信給預備領袖
+  //寄信給�??��?�?
   $strSQL = "SELECT ViceLeaderMail FROM ".$xoopsDB->prefix('torch_group_lists').
     " WHERE GroupID = '$groupID'";
   $result = $xoopsDB->query($strSQL);
@@ -95,7 +95,7 @@ foreach( $changeList as $groupID=>$memberIDList){
     array_push($toEmails, $viceMail);
   }
   array_push($toEmails, $groupLeaderMail);
-  # 過渡期的CODE結束
+  # ?�渡?��?CODE結�?
 
   $xoopsMailer->setToEmails($toEmails);
   $xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
