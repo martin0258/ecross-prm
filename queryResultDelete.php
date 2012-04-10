@@ -4,6 +4,7 @@
  * [查詢刪除]的結果頁面
  * @author Martin Ku
  * @package page
+ * Log: Fixed link name from queryresultDelete to queryResultDelete.
  */
 include '../../mainfile.php';
 
