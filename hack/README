@@ -1,0 +1,6 @@
+Ecross使用「叉00S」架設網站。
+
+===Login notification===
+===Group notification===
+  -include/checkLogin.php         :  some actions after login
+  -XOOPS_ROOT_PATH/Ecross-Hack/   :  others required files

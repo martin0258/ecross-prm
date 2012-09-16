@@ -1,0 +1,128 @@
+<?php
+/** 
+ * Description:
+ * This file is the temporary of sendmail.php?ÇÂú®Â§ßÂÆ∂ÁøíÊÖ£?ªÂÖ•?ÑÊü•?ãÊñπÂºèÂ?Ôºå‰??º‰ø°‰∏≠È?Ë°®Ê†º??
+ *
+ * @author          Martin Ku
+ * @package         backend
+ * @version         2012/03/02 Last update
+ */
+set_time_limit(6000);
+include '../mainfile.php';
+require_once 'function/encrypt.php';
+require_once 'function/funcs.php';
+
+# log
+$mail_fp = fopen(getSysVar('logFilePath'), 'a+');
+
+$mailSubject = 'Â∞èÁ??êÂì°ËÆäÂ?';
+$changeList = array();
+
+#Âª∫Á?‰∫åÁ∂≠???[ÁµÑÂà•][?∞Ê??ãID]
+$sql_changeList = 
+  "SELECT GroupLists_GroupID, MemberID FROM ".$xoopsDB->prefix("torch_member_information").
+  " WHERE GroupLists_GroupID != GroupID_TEMP OR (GroupLists_GroupID>0 AND GroupID_TEMP IS NULL)".
+  " ORDER BY GroupLists_GroupID, MemberID";
+$result = $xoopsDB->query($sql_changeList);
+while( $row = $xoopsDB->fetchrow($result) ){
+  $groupID = $row[0];
+  $memberID = $row[1];
+  if(!isset($changeList[$groupID])){
+    $changeList[$groupID] = array();
+  }
+  array_push($changeList[$groupID], $memberID);
+}
+//error_log(print_r($changeList, true));
+
+# Âª∫Á??ÑÁ?‰∫∫Âì°???ÔºåÂ?Â∞çÊ??ÑÂ?Â°´ÂÖ•newMember.tpl
+foreach( $changeList as $groupID=>$memberIDList){
+  $sql_groupDetail = 
+    "SELECT GroupName, GroupLeaderMail FROM ".$xoopsDB->prefix("torch_group_lists").
+    " WHERE GroupID = '$groupID'";
+  $result = $xoopsDB->query($sql_groupDetail);
+  $groupName = mysql_result($result, 0, 0);
+  $groupLeaderMail = mysql_result($result, 0, 1);
+  $IDlist = "";
+  foreach( $memberIDList as $memberID){
+    //?®È??üÂ??∞‰∫∫ID?ÜÈ?
+    $IDlist .= ($memberID.',');
+  }
+  $IDlist = substr($IDlist, 0, strlen($IDlist)-1);
+  $link = XOOPS_URL . '/Ecross-Hack/mailLink.php?l=' . authcode($IDlist, 'ENCODE');
+
+  $xoopsMailer =& xoops_getMailer();
+  $xoopsMailer->useMail();
+  $xoopsMailer->setTemplateDir('mail_template/');
+  //$xoopsMailer->setTemplateDir('language/'.$xoopsConfig['language'].'/mail_template/');
+  $xoopsMailer->setTemplate('newMemberTemp.tpl');
+  $xoopsMailer->assign("NEW_MEMBER_COUNT", count($memberIDList));
+  $xoopsMailer->assign("GROUPNAME", $groupName);
+  $xoopsMailer->assign("LINK", $link);
+  //$xoopsMailer->addHeaders('Content-Type: text/html; charset=ISO-8859-7');
+
+  # ?éÊ∏°?üÁ?CODE??Æµ:
+  # 1. ‰ªçÁÑ∂?ÑÈ?table 
+  # 2. CCÁµ¶È??ôÈ?Ë¢?
+  //Âª∫Á??∞‰∫∫table
+  $table = "<table border='1'><tr>
+    <th align ='center'>Á¨¨‰?Ê¨°‰??ôÊ??•Ê?</th>
+    <th align ='center'>‰∏≠Ê?ÂßìÂ?</th>
+    <th align ='center'>?±Ê?ÂßìÂ?</th>
+    <th align ='center'>?ãÊ??üÁ¢º</th>
+    <th align ='center'>?ªÂ??µ‰ª∂</th>
+    <th align ='center'>?∞Â?</th>
+    </tr>";
+  $sql="Select FirstVisitDate, ChineseName, EnglishName, CellPhoneNumber, Email,
+    MailingAddress_Detail from ".$xoopsDB->prefix("torch_member_information").
+    " WHERE MemberID IN($IDlist)";
+  $result = $xoopsDB->query($sql);
+  while( $row = $xoopsDB->fetchrow($result)){
+    $table .= "<tr>";
+    for ($j = 0; $j < 6; $j++) {
+      $table .= "<td align='center'>$row[$j]</td>";
+    }
+    $table .= "</tr>";
+  }
+  $table .= "</table>";
+  $xoopsMailer->assign("TABLE", $table);
+  //ÂØÑ‰ø°Áµ¶È??ôÈ?Ë¢?
+  $strSQL = "SELECT ViceLeaderMail FROM ".$xoopsDB->prefix('torch_group_lists').
+    " WHERE GroupID = '$groupID'";
+  $result = $xoopsDB->query($strSQL);
+  $viceMails = explode(',', mysql_result($result, 0) );
+  $toEmails = array();
+  foreach ($viceMails as $viceMail) {
+    array_push($toEmails, $viceMail);
+  }
+  array_push($toEmails, $groupLeaderMail);
+  # ?éÊ∏°?üÁ?CODEÁµêÊ?
+
+  $xoopsMailer->setToEmails($toEmails);
+  $xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
+  $xoopsMailer->setFromName($xoopsConfig['sitename']);
+  $xoopsMailer->setSubject($mailSubject);
+  $xoopsMailer->multimailer->isHTML(true);
+
+  fwrite($mail_fp, date("Y-m-d H:i:s").":Message should send to $groupID-$groupName $groupLeaderMail\n");
+  if (!$xoopsMailer->send()) {
+    error_log("xoopsMailer Error: ".$xoopsMailer->getErrors());
+    fwrite( $mail_fp, 
+      "Fail on " . date("Y-m-d H:i:s").", Message sent to $groupID-$groupName $groupLeaderMail, ".
+      "Error:".$xoopsMailer->getErrors(). "\n");
+  }else{
+    echo "Message sent to $groupLeaderMail Successfully!<BR>";
+    error_log("Message sent to $groupLeaderMail Successfully");
+    fwrite($mail_fp, 
+      "Success on " . date("Y-m-d H:i:s").", Message sent to $groupID-$groupName $groupLeaderMail\n");
+
+    //Sync GroupID and GroupID_Temp
+    $sql_update = 
+      " UPDATE ".$xoopsDB->prefix("torch_member_information").
+      " SET GroupID_TEMP=GroupLists_GroupID".
+      " WHERE MemberID IN($IDlist)";
+    $result = $xoopsDB->queryF($sql_update);
+  }
+}
+
+fclose($mail_fp);
+?>
