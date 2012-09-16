@@ -1,0 +1,317 @@
+<{* 
+  Description: 
+  This template is used by
+    -editMember.php[編輯新人]
+    -viewMember.php[查看新人]
+  @author Martin Ku
+*}>
+
+<div id='container'>
+<form name='form1' id='form1' method='post' action='<{$action}>' enctype='multipart/form-data'>
+  <div class='info'>
+    <h2 class='info'><{$tableTitle}></h2>
+  </div>
+  <ul>
+    <li>
+    <!--label class='first'>會員編號:</label><label><{$memberID}></label-->
+      <input type='hidden' name='memberID' value=<{$memberID}>>
+    </li>
+    <li>
+      <label class='first'>日期:</label>
+      <input type='text' name='date' class='datepicker' size='10' value='<{$visitDate}>' tabindex='1'>
+    </li>
+    <li>
+      <label for='group_select1' class='first'>小組:</label>
+      <input type='hidden' id='groupID' value='<{$groupID}>'>
+      <select name='group_select1' id='group_select1' tabindex='2'>
+        <option value=''>請選擇分類</option>
+        <{foreach key=key item=group from=$groupArr}>
+        <option value='<{$key}>' <{if $groupCtg==$key}>selected<{/if}>><{$group}></option>
+        <{/foreach}>
+      </select>
+      <select name='group_select2' id='group_select2' tabindex='3'>
+        <option value=''>請選擇小組</option>
+      </select>
+    </li>
+    <li>
+      <label class='first'>性質:</label>
+      <input type='radio' name='source' id='sunday' value='主日' tabindex='4'
+      <{if $source=='主日' || !isset($source)}>checked<{/if}>><label for='sunday'>主日崇拜</label>
+      <input type='radio' name='source' id='prayer' value='禱告會' tabindex='5'
+      <{if $source=='禱告會'}>checked<{/if}>><label for='prayer'>禱告會</label>
+      <input type='radio' name='source' id='source_other' value='其他' tabindex='6'
+      <{if $source=='其他'}>checked<{/if}>><label for='source_other'>其他</label>
+    </li>
+    <li>
+      <label for='cname' class='first'>中文姓名:</label>
+      <input type='text' class='validate[groupRequired[name]]' id='cname' name='cname' tabindex='7'
+      size='10' value='<{$cname}>'>
+    </li>
+    <li>
+    <label for='ename' class='first'>英文姓名:</label>
+      <input type='text' class='validate[groupRequired[name]]' id='ename' name='ename' tabindex='8'
+      size='10' value='<{$ename}>'>
+    </li>
+    <li>
+      <label class='first'>性別:</label>
+      <input type='radio' name='memSex' id='male' value='男' tabindex='9'
+      <{if $sex=='男' || !isset($sex)}>checked<{/if}>><label for='male'>男</label>
+      <input type='radio' name='memSex' id='female' value='女' tabindex='10'
+      <{if $sex=='女'}>checked<{/if}>><label for='female'>女</label>
+      <input type='radio' name='memSex' id='sex_unknow' value='不詳' tabindex='11']
+      <{if $sex=='不詳'}>checked<{/if}>><label for='sex_unknow'>不詳</label>
+    </li>
+    <li>
+    <label class='first' for='bir_year'>生日:</label>
+      <select name='bir_year' id='bir_year' tabindex='12'><option>
+        <script type='text/javascript'>
+          selectYear(<{$birthYear}>, 1910);
+        </script>
+      </select>
+    <label>年</label>
+      <select name='bir_month' tabindex='13'><option>
+        <script type='text/javascript'>
+          selectMonth(<{$birthMonth}>);
+        </script>
+      </select>
+    <label>月</label>
+      <select name='bir_day' tabindex='14'><option>
+        <script type='text/javascript'>
+          selectDay(<{$birthDay}>);
+        </script>
+      </select>
+    <label>日</label>
+    </li>
+    <li>
+    <label class='first' for='memAge'>年齡:</label>
+      <select name='memAge' id='memAge' tabindex='14'><option>
+        <{foreach key=key item=age from=$ageArr}>
+        <option value='<{$key}>' <{if $memAge==$key}>selected<{/if}>><{$age}></option>
+        <{/foreach}>
+      </select>
+    </li>
+    <li>
+      <label class='first'>婚姻狀況:</label>
+      <input type='radio' name='memMarry' id='Marry1' value='單身' tabindex='15'
+      <{if $memMarry=='單身' || !isset($memMarry)}>checked<{/if}>><label for='Marry1'>單身</label>
+      <input type='radio' name='memMarry' id='Marry2' value='已婚' tabindex='16'
+      <{if $memMarry=='已婚'}>checked<{/if}>><label for='Marry2'>已婚&nbsp;</label><label>(</label>
+      <input type='checkbox' name='memComeWithSpouse' id='Marry3' value='Y' tabindex='17'
+      <{if $memComeWithSpouse=='Y'}>checked<{/if}>>
+      <label for='Marry3'>和配偶一起前來，</label><label for='Marry4'>配偶姓名:</label>
+      <input type='text' name='memSpouseName' id='Marry4' tabindex='18'
+      size='10' value='<{$memSpouseName}>'>)
+      <input type='radio' name='memMarry' id='Marry5' value='其他' tabindex='19'
+      <{if $memMarry=='其他'}>checked<{/if}>><label for='Marry5'>其他</label>
+      <input type='radio' name='memMarry' id='Marry6' value='不詳' tabindex='20'
+      <{if $memMarry=='不詳'}>checked<{/if}>><label for='Marry6'>不詳</label>
+    </li>
+    <li>
+      <label class='first' for='memHome'>住家電話:</label>
+      <input type='text' name='memHome' id='memHome' tabindex='21' size='10' value='<{$memHome}>'>
+    </li>
+    <li>
+      <label class='first' for='memCell'>手機:</label>
+      <input type='text' name='memCell' id='memCell' tabindex='22' size='15' value='<{$memCell}>'>
+    </li>
+    <li>
+      <label class='first' for='memOffice'>公司電話:</label>
+      <input type='text' name='memOffice' id='memOffice' tabindex='23' size='10' value='<{$memOffice}>'>
+    </li>
+    <li>
+      <label class='first' for='memAddressNation'>住址:</label>
+      <input type='hidden' id='zipCode' value='<{$zipCode}>'>
+      <input type='text' name='memAddressNation' id='memAddressNation' tabindex='24'
+      size='3' value='<{if !isset($memNation)}>台灣<{else}><{$memNation}><{/if}>'>
+      <select name='memAddressCountry' id='address_select1' tabindex='25'>
+        <option value=''>請選擇縣市</option>
+        <{foreach key=key item=country from=$countryArr}>
+          <option value='<{$key}>' <{if $memAddressCountry==$key}>selected<{/if}>><{$country}></option>
+        <{/foreach}> 
+      </select>
+      <select name='memAddressZipCode' id='address_select2' tabindex='26'>
+        <option value=''>請選擇鄉鎮市區</option>
+      </select>
+      <input type='text' name='memAddressDetail' id='memAddressDetail' tabindex='27'
+      size='30' value='<{$memAddressDetail}>'>
+    </li>
+    <li>
+      <label class='first' for='memEmail'>E-mail:</label>
+      <input type='text' name='memEmail' id='memEmail' tabindex='28'
+      class='validate[custom[email]]' id='memEmail' size='25' value='<{$memEmail}>'>
+    </li>
+    <li>
+      <label class='first' for='memJob'>職業/就讀學校:</label>
+      <input type='text' name='memJob' id='memJob' tabindex='29' size='25' value='<{$memJob}>'>
+      <label for='memSchool'>就讀/畢業於學校(年級):</label>
+      <input type='text' name='memSchool' id='memSchool' tabindex='30'size='25' value='<{$memSchool}>'>
+    </li>
+    <li>
+      <label class='first'>身份:</label>
+      <input type='radio' name='memType' id='memType1' tabindex='31'
+      value='已有其他固定教會基督徒' <{if $memType=='已有其他固定教會基督徒'}>checked<{/if}>>
+      <label for='memType1'>已有其他固定教會基督徒</label>
+      <input type='radio' name='memType' id='memType2' tabindex='32'
+      value='無其他固定教會基督徒' <{if $memType=='無其他固定教會基督徒' || !isset($memType)}>checked<{/if}>>
+      <label for='memType2'>無其他固定教會基督徒</label>
+      <input type='radio' name='memType' id='memType3' tabindex='33'
+      value='未受洗非基督徒' <{if $memType=='未受洗非基督徒'}>checked<{/if}>>
+      <label for='memType3'>未受洗非基督徒</label>
+      <input type='radio' name='memType' id='memType4' tabindex='34'
+      value='其他' <{if $memType=='其他'}>checked<{/if}>><label for='memType4'>其他</label>
+      <input type='text' name='memStatusMemo' id='memStatusMemo' tabindex='35'
+      size='10' value='<{$memStatusMemo}>'>
+    </li>
+
+    <li>
+    <fieldset class='fieldsetFixed'>
+      <legend>如何得知火把(不限單複選)</legend>
+      <input type='checkbox' name='howToKnowTorch[]' id='how1' tabindex='36'
+      value='I1' <{if $intermediumArr.I1=='Y'}>checked<{/if}>>
+      <label for='how1'>朋友，</label>
+      <label for='how2'>姓名</label>
+      <input type='text' name='memInviteFriend' id='how2' tabindex='37'
+      size='10' value='<{$memInviteFriend}>'>
+      <label for='how3'>電話</label>
+      <input type='text' name='memInviteTelFriend' id='how3' tabindex='38'
+      size='10' value='<{$memInviteTelFriend}>'><br>
+      <input type='checkbox' name='howToKnowTorch[]' id='how4' tabindex='39'
+      value='I2' <{if $intermediumArr.I2=='Y'}>checked<{/if}>>
+      <label for='how4'>家人，</label>
+      <label for='how5'>姓名</label>
+      <input type='text' name='memInviteFamily' id='how5' tabindex='40'
+      size='10' value='<{$memInviteFamily}>'>
+      <label for='how6'>電話</label>
+      <input type='text' name='memInviteTelFamily' id='how6' tabindex='41'
+      size='10' value='<{$memInviteTelFamily}>'><br>
+      <input type='checkbox' name='howToKnowTorch[]' id='how7' tabindex='42'
+      value='I3' <{if $intermediumArr.I3=='Y'}>checked<{/if}>>
+      <label for='how7'>傳播媒介&nbsp;(</label>
+      <input type='checkbox' name='howToKnowTorch[]' id='how8' tabindex='43'
+      value='I301' <{if $intermediumArr.I301=='Y'}>checked<{/if}>>
+      <label for='how8'>火把網站</label>
+      <input type='checkbox' name='howToKnowTorch[]' id='how9' tabindex='44'
+      value='I302' <{if $intermediumArr.I302=='Y'}>checked<{/if}>>
+      <label for='how9'>Facebook</label>
+      <input type='checkbox' name='howToKnowTorch[]' id='how10' tabindex='45'
+      value='I303' <{if $intermediumArr.I303=='Y'}>checked<{/if}>>
+      <label for='how10'>Torch雜誌</label>
+      <input type='checkbox' name='howToKnowTorch[]' id='how11' tabindex='46'
+      value='I304' <{if $intermediumArr.I304=='Y'}>checked<{/if}>>
+      <label for='how11'>DM</label>
+      <input type='checkbox' name='howToKnowTorch[]' id='how12' tabindex='47'
+      value='I305' <{if $intermediumArr.I305=='Y'}>checked<{/if}>>
+      <label for='how12'>電視媒體&nbsp;)</label><br>
+      <input type='checkbox' name='howToKnowTorch[]' id='how13' tabindex='48'
+      value='I4' <{if $intermediumArr.I4=='Y'}>checked<{/if}>>
+      <label for='how13'>其他</label>
+      <input type='text' name='howToKnowTorchMemo' id='how14' tabindex='49'
+      size='10' value='<{$howToKnowTorchMemo}>'>
+    </fieldset>
+    </li>
+    <li>
+    <fieldset class='fieldsetFixed'>
+      <legend>喜歡火把的(不限單複選)</legend>
+      <input type='checkbox' name='likeReason[]' id='like1' tabindex='50'
+      value='R1' <{if $likeReasonArr.R1=='Y'}>checked<{/if}>>
+      <label for='like1'>熱情招待</label>
+      <input type='checkbox' name='likeReason[]' id='like2' tabindex='51'
+      value='R2' <{if $likeReasonArr.R2=='Y'}>checked<{/if}>>
+      <label for='like2'>餐點</label>
+      <input type='checkbox' name='likeReason[]' id='like3' tabindex='52'
+      value='R3' <{if $likeReasonArr.R3=='Y'}>checked<{/if}>>
+      <label for='like3'>會場佈置</label>
+      <input type='checkbox' name='likeReason[]' id='like4' tabindex='53'
+      value='R4' <{if $likeReasonArr.R4=='Y'}>checked<{/if}>>
+      <label for='like4'>唱詩氣氛</label>
+      <input type='checkbox' name='likeReason[]' id='like5' tabindex='54'
+      value='R5' <{if $likeReasonArr.R5=='Y'}>checked<{/if}>>
+      <label for='like5'>節目呈現</label>
+      <input type='checkbox' name='likeReason[]' id='like6' tabindex='55'
+      value='R6' <{if $likeReasonArr.R6=='Y'}>checked<{/if}>>
+      <label for='like6'>牧師信息</label>
+      <input type='checkbox' name='likeReason[]' id='like7' tabindex='56'
+      value='R7' <{if $likeReasonArr.R7=='Y'}>checked<{/if}>>
+      <label for='like7'>禱告時刻</label><br>
+      <input type='checkbox' name='likeReason[]' id='like8' tabindex='57'
+      value='R8' <{if $likeReasonArr.R8=='Y'}>checked<{/if}>>
+      <label for='like8'>其他</label>
+      <input type='text' name='likeMemo' id='like9' tabindex='58' size='10' value='<{$likeMemo}>'>
+    </fieldset>
+    </li>
+    <li>
+    <fieldset class='fieldsetFixed'>
+      <legend>火把教會可改進的(不限單複選)</legend>
+      <input type='checkbox' name='improve[]' id='improve1' tabindex='58'
+      value='R1' <{if $improveArr.R1=='Y'}>checked<{/if}>>
+      <label for='improve1'>熱情招待</label>
+      <input type='checkbox' name='improve[]' id='improve2' tabindex='59'
+      value='R2' <{if $improveArr.R2=='Y'}>checked<{/if}>>
+      <label for='improve2'>餐點</label>
+      <input type='checkbox' name='improve[]' id='improve3' tabindex='60'
+      value='R3' <{if $improveArr.R3=='Y'}>checked<{/if}>>
+      <label for='improve3'>會場佈置</label>
+      <input type='checkbox' name='improve[]' id='improve4' tabindex='61'
+      value='R4' <{if $improveArr.R4=='Y'}>checked<{/if}>>
+      <label for='improve4'>唱詩氣氛</label>
+      <input type='checkbox' name='improve[]' id='improve5' tabindex='62'
+      value='R5' <{if $improveArr.R5=='Y'}>checked<{/if}>>
+      <label for='improve5'>節目呈現</label>
+      <input type='checkbox' name='improve[]' id='improve6' tabindex='63'
+      value='R6' <{if $improveArr.R6=='Y'}>checked<{/if}>>
+      <label for='improve6'>牧師信息</label>
+      <input type='checkbox' name='improve[]' id='improve7' tabindex='64'
+      value='R7' <{if $improveArr.R7=='Y'}>checked<{/if}>>
+      <label for='improve7'>禱告時刻</label><br>
+      <input type='checkbox' name='improve[]' id='improve8' tabindex='65'
+      value='R8' <{if $improveArr.R8=='Y'}>checked<{/if}>>
+      <label for='improve8'>其他</label>
+      <input type='text' name='improveMemo' id='improve9' tabindex='66'
+      size='10' value='<{$improveMemo}>'>
+    </fieldset>
+    </li>
+    <li>
+    <fieldset class='fieldsetFixed'>
+      <legend>新朋友需要的服務(不限單複選)</legend>
+      <input type='checkbox' name='service[]' id='service1' tabindex='67'
+      value='S1' <{if $serviceArr.S1=='Y'}>checked<{/if}>>
+      <label for='service1'>祝福禱告</label>
+      <input type='checkbox' name='service[]' id='service2' tabindex='68'
+      value='S2' <{if $serviceArr.S2=='Y'}>checked<{/if}>>
+      <label for='service2'>參加小組</label>
+      <input type='checkbox' name='service[]' id='service3' tabindex='69'
+      value='S3' <{if $serviceArr.S3=='Y'}>checked<{/if}>>
+      <label for='service3'>寄送電子報</label>
+      <input type='checkbox' name='service[]' id='service4' tabindex='70'
+      value='S4' <{if $serviceArr.S4=='Y'}>checked<{/if}>>
+      <label for='service4'>到家裡或公司探訪新會友</label><br>
+      <input type='checkbox' name='service[]' id='service5' tabindex='71'
+      value='S5' <{if $serviceArr.S5=='Y'}>checked<{/if}>>
+      <label for='service5'>代禱</label>
+      <input type='text' name='intercession' id='service6' tabindex='72'
+      size='30' value='<{$intercession}>'>
+    </fieldset>
+    </li>
+    <li>
+      <label class='block'>其他疑問/建議</label>
+      <textarea name='note' ROWS=5 COLS=70 tabindex='73'><{$note}></textarea>
+    </li>
+    <li>
+      <label>照片:</label>
+      <img src='<{$picturePath}>' width='120' alt='會員相片'>
+      <{if $action=='editMemberProcess.php'}>
+      <input type='file' name='imgURL' tabindex='74'>
+      <{/if}>
+    </li>
+    <li class='button'>
+      <input type='<{$buttonType}>' value='<{$submitName}>' tabindex='75'>
+      <{if $action=='editMember.php'}>
+      <input type='button' value='回上次查詢結果' tabindex='76'
+      onClick="window.location='queryResult.php?r=1'">
+      <{else}>
+      <input type='reset' value='清除' tabindex='76'>
+      <{/if}>
+    </li>
+  </ul>
+</form>
+</div>

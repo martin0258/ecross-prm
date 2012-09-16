@@ -1,0 +1,237 @@
+/* IMPORTANT, PLEASE RESPECT THIS SEMANTIC ORDER !!! :
+	- position box,
+	- width,
+	- heigth,
+	- margin,
+	- background-color,
+	- background-image,
+	- padding,
+	- content (color, style font, ...),
+	- border,
+	 ... */
+
+/* General definitions */
+/*html, body {background-color : transparent; font-size: 10pt; font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0; padding: 0;}*/
+
+img { border: 0;}
+
+/* ===== hypertext links ===== */
+/*
+a:link { background-color: transparent; color: #666; font-weight: bold; text-decoration: none;}
+a:visited { background-color: transparent; color: #666; font-weight: bold; text-decoration: none;}
+*/
+a:hover { background-color: transparent; color: #ff9966; font-weight: bold; text-decoration: none;}
+
+/* ===== forms elements ===== */
+/*
+input.normal {background-color: #fff; color:inherit; font-size: .8em; font-family: verdana, arial, helvetica, sans-serif; border-left: #000 1px solid;color: #000; border-bottom: #000 1px solid; border-right: #000 1px solid; border-top: #000 1px solid;}
+textarea { width: 430px; font-size: .8em; font-family: verdana, arial, helvetica, sans-serif; border: #000 1px solid;}
+input.formTextBox { background: #fff; color:inherit; font-size: .8em; font-family: verdana, arial, helvetica, sans-serif;border: #000 1px solid; }
+select { font-size: .8em; font-family: verdana, arial, helvetica, sans-serif;}
+.myButton {cursor: pointer;}
+*/
+
+/* ===== Table ===== */
+.qTable { 
+  text-align: center;
+  border-width: 0 1px 1px 1px; 
+  border-style: solid;
+  white-space: nowrap;
+  width: 100%;
+}
+.qTable tbody td {
+  /*border-bottom: 1px solid #339;*/
+  border: 1px #ccc solid;
+  padding: 9px 3px 3px 3px;
+}
+.qTable tbody tr:hover td {
+  background: #4FE5F0;
+  color: #4D0C05;
+}
+.qTable tfoot td {
+  border: 1px #ccc solid;
+}
+.qTable tbody tr:nth-child(odd) {
+  background: #d0dafd;
+}
+.qTable tbody tr:nth-child(even) {
+  background: #ffffff;
+}
+.qTable tbody tr.checkedRow {
+  background: #FFF7C0;
+}
+.infoTable{
+ white-space: nowrap;
+}
+
+/* ===== Torch Form ===== */
+#container form ul{
+  margin:0;
+  padding:0;
+  list-style-type:none;
+}
+li.focused{
+  background-color:#FFF7C0;
+}
+form li{
+  margin:0;
+  padding:4px 0% 2px 1%;
+  clear:both;
+  background-color:transparent;
+  white-space: nowrap;
+  position:relative; /* Makes Instructs z-index stay on top in IE. */
+  -webkit-transition: background-color 350ms ease-out;
+  -moz-transition: background-color 350ms ease-out;
+  -o-transition: background-color 350ms ease-out;
+  transition: background-color 350ms ease-out;
+}
+form label{
+  font-weight:normal;
+  color:#444444;
+}
+form label.first{
+  width: 99px;
+  text-align:right;
+  float: left;
+  margin-right: 5px;
+}
+form label.qfirst{
+  font-weight:bold;
+  width: 85px;
+  text-align:left;
+  float: left;
+  margin-right: 0px;
+  background-color: #E0E0E0;
+}
+form label.block{
+  font-weight:bold;
+  display:block;
+}
+input.text{
+  margin: 0 0 1px 0;
+  border-top:1px solid #7c7c7c;
+  border-left:1px solid #c3c3c3;
+  border-right:1px solid #c3c3c3;
+  border-bottom:1px solid #ddd;
+  background:#fff url(../images/fieldbg.gif) repeat-x top;
+}
+.fieldsetFixed {
+  border: 2px solid #ccc;
+  ridge #ff00ff; 
+  color: #000000;
+  width: 77%;
+  margin:0px 0px 0px 0px;
+  padding:5px 10px 10px 10px; 
+}
+.fieldsetAutoWidth{
+  display: inline-block;
+  border: 2px solid #ccc;
+  ridge #ff00ff; 
+  color: #000000;
+  margin:0px 0px 0px 0px;
+  padding:5px 10px 10px 10px; 
+}
+legend {
+  margin: 0;
+  padding:0px 0px 0px 0px;
+}
+form textarea{
+  border: 2px solid #ccc;
+}
+
+input[type=submit], input[type=reset], input[type=button] {
+  margin:2px 0 2px 0;
+  background:#D3D2D6 url(../images/button_bg.png) repeat-x left bottom;
+  padding:2px 7px 2px 7px;
+  color:#405A80;
+  font-size:1em;
+  font-weight:bold;
+  border:1px solid #ccc;
+  border-radius:5px; 
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  -khtml-border-radius:5px;
+  box-shadow:0 0 20px #bbb;
+  -moz-box-shadow: 0 0 20px #bbb;
+  -webkit-box-shadow:0 0 20px #bbb;
+  cursor:pointer;
+}
+
+input[type=submit].importantButton, input[type=button].importantButton {
+  margin:2px 0 2px 0;
+  background: #ED1F52;
+  padding:2px 7px 2px 7px;
+  color:#F2E1E6;
+  font-size:1em;
+  font-weight:bold;
+  border:1px solid #ccc;
+  border-radius:5px; 
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  -khtml-border-radius:5px;
+  box-shadow:0 0 20px #bbb;
+  -moz-box-shadow: 0 0 20px #bbb;
+  -webkit-box-shadow:0 0 20px #bbb;
+  cursor:pointer;
+}
+input[type=submit].importantButton:hover, input[type=button].importantButton:hover {
+  background: #D42651 url(../img/button-hover_bg.png) repeat-x left bottom;
+  cursor: pointer;
+}
+
+
+/* ----- REQUIRED ----- */
+form span.req{
+  display:inline;
+  float:none;
+  color:red !important;
+  font-weight:bold;
+  margin:0;
+  padding:0;
+}
+
+/* ===== Border ===== */
+#container{
+  text-align:left;
+  background-color:#FFFFFF;
+  border:1px solid #ccc;
+  -webkit-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+  -moz-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+  -o-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+  box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+}
+.scrollBar {position:relative; overflow:auto;}
+
+/* ===== Info ===== */
+.info {
+  margin-bottom: 20px;
+}
+.info h2{
+  display: inline;
+  border-bottom:1px solid #000000;
+  border-bottom-width:2px;
+  font-size:160%;
+  color:#000000;
+}
+div.contact{
+  display: inline-block;
+  border-bottom:1px solid #000000;
+}
+
+/* ===== PageOption below result table ===== */
+.pageOption {
+  margin: 5px 0 0 0;
+}
+
+/* ===== Others ===== */
+.underconstruction { 
+  background:url(http://animatedgif.net/underconstruction/constructionspin_e0.gif) top left no-repeat;
+  padding-left: 55px;
+  min-height:37px;
+}
+
+/* ===== Pagination ===== */
+.Button.first{ background: url(http://tympanus.net/jPaginate/images/sprevious.png) no-repeat center; }
+.Button.prev { background: transparent url(http://tympanus.net/jPaginate/images/previous.png) no-repeat center; }
+.Button.next { background: transparent url(http://tympanus.net/jPaginate/images/next.png) no-repeat center; }
+.Button.last { background: transparent url(http://tympanus.net/jPaginate/images/snext.png) no-repeat center; }

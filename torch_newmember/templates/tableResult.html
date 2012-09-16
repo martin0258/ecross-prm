@@ -1,0 +1,63 @@
+<{* 
+  Description:
+  This template is used by 
+    -contactList.php[訪談列表]
+    -queryResult.php[查詢結果]
+    -queryResultDelete.php[查詢刪除]
+    -queryResultAddress.php[地址輸出]
+  @author Martin Ku
+*}>
+
+<div class='info'>
+  <table class='infoTable'>
+    <tr>
+      <td><h2><{$tableTitle}></h2></td>
+      <td style='text-align: right;'><div class='contact'><{$contactButton}></div></td>
+    </tr>
+  </table>
+</div>
+<div>
+<{if isset($formAction)}>
+<form name='form1' method='post' onsubmit='<{$formOnsubmit}>' action='<{$formAction}>'>
+<div class='scrollBar'>
+<{/if}>
+<table class='qTable'>
+  <thead>
+    <tr>
+      <{foreach item=head from=$tableHead}>
+      <th><{$head}></th>
+      <{/foreach}>
+    </tr>
+  </thead>
+  <tbody>
+    <{foreach item=row from=$tableBody}>
+    <tr>
+      <{foreach item=cell from=$row}>
+      <td><{$cell}></td>
+      <{/foreach}>
+    </tr>
+    <{/foreach}>
+  </tbody>
+  <{$tableFoot}>
+</table>
+<{if isset($formAction)}>
+</div>
+</form>
+<{/if}>
+</div>
+
+<span class='pager'><{$pageLinks}></span>
+<{if $hasResult==true}>
+<div class='pageOption'>
+  <select name='page' onchange="window.location='?page='+this.options[this.selectedIndex].value"> 
+    <{foreach item=num from=$pages}>
+    <option value=<{$num}> <{if $page==$num}>selected<{/if}>><{$num}>頁</option>
+    <{/foreach}>
+  </select>
+  <select name='num_row' onchange="window.location='?num_row='+this.options[this.selectedIndex].value">
+    <{foreach item=num from=$rows_per_page_option}>
+    <option value=<{$num}> <{if $rows_per_page==$num}>selected<{/if}>><{$num}>筆</option>
+    <{/foreach}>
+  </select>
+</div>
+<{/if}>
